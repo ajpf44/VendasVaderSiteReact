@@ -1,0 +1,1 @@
+componentes, tudo for utilizado em mais de uma page ou elementos de page que forem muito grandes

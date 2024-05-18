@@ -1,0 +1,2 @@
+págians, qualquer página ou rota do projeto
+Caso a página seja grande pode ser criado uma nova pasta

@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 interface ProductCardProps {
-  id: number;
+  id: string;
   name: string;
-  price: number;
+  price: string;
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ id, name, price }) => {

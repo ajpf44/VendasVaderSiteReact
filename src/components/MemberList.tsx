@@ -13,17 +13,17 @@ const MemberList: React.FC = () => {
   const [members, setMembers] = useState<Member[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    axios.get('/api/members')
-      .then(response => {
-        setMembers(response.data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error(error);
-        setLoading(false);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios.get('/api/members')
+  //     .then(response => {
+  //       setMembers(response.data);
+  //       setLoading(false);
+  //     })
+  //     .catch(error => {
+  //       console.error(error);
+  //       setLoading(false);
+  //     });
+  // }, []);
 
   if (loading) return <p>Loading...</p>;
 

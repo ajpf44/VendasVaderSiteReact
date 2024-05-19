@@ -10,6 +10,9 @@ import MembersPage from "./pages/Members/Members";
 import { AuthProvider } from "./contexts/AuthContext";
 import { CartProvider } from "./contexts/CartContext";
 import HeaderComponent from "./components/Header/HeaderComponent";
+import FooterComponent from "./components/Footer/FooterComponent";
+
+import "./App.css"
 
 const App: React.FC = () => {
   return (
@@ -25,6 +28,7 @@ const App: React.FC = () => {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/members" element={<MembersPage />} />
           </Routes>
+          <FooterComponent />
         </Router>
       </CartProvider>
     </AuthProvider>

@@ -1,11 +1,11 @@
 .header{
-    background-color: gray;
+    background-color: rgb(207, 207, 207);
 
     display: flex;
     width: 100vw;
     
     align-items: center;
-    justify-content: stretch;
+    justify-content: space-around;
     padding: 1rem
 }
 
@@ -16,7 +16,6 @@
 }
 
 .header nav{
-    margin: auto;
     display: flex;
     gap: 2rem
 }

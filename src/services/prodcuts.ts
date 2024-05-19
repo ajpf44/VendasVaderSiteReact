@@ -10,8 +10,8 @@ async function getAllProducts(): Promise<ProductType[]>{
         
         for(const key in res.data){
             arrProducts.push({
-                id: key,
-                ...res.data[key]
+                ...res.data[key],
+                id: key
             })
         }
 

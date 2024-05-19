@@ -1,31 +1,40 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
-import { getAllProducts } from "../services/prodcuts";
-import { ProductType } from "../types/ProductsTypes";
+import { getAllProducts } from "../../../services/prodcuts";
+import { ProductType } from "../../../types/ProductsTypes";
 
 const ProductList: React.FC = () => {
   const [products, setProducts] = useState<ProductType[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-      const setProductsFromDB = async()=>{
-        setLoading(true)
-        const newProducts = await getAllProducts();
-        setLoading(false)
+    const setProductsFromDB = async () => {
+      setLoading(true);
+      const newProducts = await getAllProducts();
+      setLoading(false);
 
-        setProducts(newProducts);
-      }
+      setProducts(newProducts);
+    };
 
-      setProductsFromDB()
+    setProductsFromDB();
   }, []);
 
   if (loading) return <p>Carregando...</p>;
 
   return (
-    <div>
-      {products.map((product) => (
-        <ProductCard key={product.id} {...product} />
-      ))}
+    <div className="listContainer">
+      {products.map((product) => {
+        return (
+          <div className="productContainer" key={product.id}>
+            <img
+              src={`data:image/jpeg;base64,${product.image}`}
+              alt={`imagem do ${product.name}`}
+              style={{ width: "160px", height: "120px" }}
+            />
+            <ProductCard key={product.id} {...product} />
+          </div>
+        );
+      })}
     </div>
   );
 };

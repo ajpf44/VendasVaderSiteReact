@@ -1,0 +1,54 @@
+.geralContainer{
+    width: 100vw;
+    padding: 2em 0em;
+    background-color: lightgray;
+    display: flex;
+    justify-content: center;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+.listContainer{
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    gap: 2rem
+}
+
+.cardProductInfoContainer{
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardButtonsContainer{
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardButtonsContainer > * {
+    width: 100%;
+}
+
+
+.productContainer{
+    background-color: white;
+    width: 15rem;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    padding: 1rem;
+    border: 1px solid gray;
+    border-radius: 1rem;
+}

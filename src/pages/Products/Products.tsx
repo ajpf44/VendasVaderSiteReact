@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import ProductList from "../../components/ProductList";
+import ProductList from "./components/ProductList";
 import { getAllProducts } from "../../services/prodcuts";
+import "./Products.css";
 
 const Products: React.FC = () => {
   useEffect(() => {
@@ -8,9 +9,11 @@ const Products: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Produtos</h1>
-      <ProductList />
+    <div className="geralContainer">
+      <section className="filterSection"></section>
+      <main className="mainContainer">
+        <ProductList />
+      </main>
     </div>
   );
 };

@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 #enviroment variables
-.env
+#.env POR ENQUANTO PARA FACILITAR O DESENVOLVIMENTO

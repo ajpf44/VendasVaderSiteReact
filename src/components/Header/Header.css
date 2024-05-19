@@ -1,0 +1,22 @@
+.header{
+    background-color: gray;
+
+    display: flex;
+    width: 100vw;
+    
+    align-items: center;
+    justify-content: stretch;
+    padding: 1rem
+}
+
+.header h1{
+    font-size: 2rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+}
+
+.header nav{
+    margin: auto;
+    display: flex;
+    gap: 2rem
+}

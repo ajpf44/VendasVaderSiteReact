@@ -9,9 +9,11 @@ type OnChangeFuncType = (evt: React.ChangeEvent<HTMLInputElement>) => void;
 
 interface SearchInputProps {
   onChangeFunc: OnChangeFuncType;
+  value: string,
+  onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
-const SearchInput: React.FC<SearchInputProps> = ({onChangeFunc}) => {
+const SearchInput: React.FC<SearchInputProps> = ({onChangeFunc,value, onKeyDown}) => {
   return (
     <Box sx={{ '& > :not(style)': { m: 1 } }}>
       <FormControl variant="standard">
@@ -21,12 +23,14 @@ const SearchInput: React.FC<SearchInputProps> = ({onChangeFunc}) => {
         <Input
           id="input-with-icon-adornment"
           placeholder='Pesquisar'
+          value={value}
           startAdornment={
             <InputAdornment position="start">
               <Search />
             </InputAdornment>
           }
           onChange={onChangeFunc}
+          onKeyDown={onKeyDown}
         />
       </FormControl>
     </Box>

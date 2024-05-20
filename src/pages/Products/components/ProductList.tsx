@@ -3,21 +3,12 @@ import ProductCard from "./ProductCard";
 import { getAllProducts } from "../../../services/prodcuts";
 import { ProductType } from "../../../types/ProductsTypes";
 
-const ProductList: React.FC = () => {
-  const [products, setProducts] = useState<ProductType[]>([]);
-  const [loading, setLoading] = useState(true);
+interface ProductListProps {
+  products: ProductType[];
+  loading: boolean;
+}
 
-  useEffect(() => {
-    const setProductsFromDB = async () => {
-      setLoading(true);
-      const newProducts = await getAllProducts();
-      setLoading(false);
-
-      setProducts(newProducts);
-    };
-
-    setProductsFromDB();
-  }, []);
+const ProductList: React.FC<ProductListProps> = ({products, loading}) => {
 
   if (loading) return <p>Carregando...</p>;
 

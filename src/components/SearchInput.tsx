@@ -5,12 +5,18 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import { Search } from '@mui/icons-material';
 
-export default function SearchInput() {
+type OnChangeFuncType = (evt: React.ChangeEvent<HTMLInputElement>) => void;
+
+interface SearchInputProps {
+  onChangeFunc: OnChangeFuncType;
+}
+
+const SearchInput: React.FC<SearchInputProps> = ({onChangeFunc}) => {
   return (
     <Box sx={{ '& > :not(style)': { m: 1 } }}>
       <FormControl variant="standard">
-        <InputLabel htmlFor="input-with-icon-adornment">
-          With a start adornment
+        <InputLabel htmlFor="input-with-icon-adornment" style={{display: 'none'}}>
+          Search
         </InputLabel>
         <Input
           id="input-with-icon-adornment"
@@ -20,8 +26,11 @@ export default function SearchInput() {
               <Search />
             </InputAdornment>
           }
+          onChange={onChangeFunc}
         />
       </FormControl>
     </Box>
   );
 }
+
+export default SearchInput

@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import ProductList from "./components/ProductList";
 import { getAllProducts } from "../../services/prodcuts";
 import "./Products.css";
+import FilterPanel from "./components/FilterProductPanel";
 
 const Products: React.FC = () => {
   useEffect(() => {
@@ -10,7 +11,7 @@ const Products: React.FC = () => {
 
   return (
     <div className="geralContainer">
-      <section className="filterSection"></section>
+      <FilterPanel />
       <main className="mainContainer">
         <ProductList />
       </main>

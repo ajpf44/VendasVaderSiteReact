@@ -3,12 +3,18 @@
     padding: 2em 0em;
     background-color: lightgray;
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
 }
 
 main {
     display: flex;
     justify-content: center;
+    width: calc(100% - 18rem);
+    box-sizing: border-box;
+    /* Ensure children have a minimum width to prevent collapsing */
+    min-width: 15rem;
 }
 
 .listContainer{
@@ -48,7 +54,19 @@ main {
     justify-content: center;
     align-items: center;
     
-    padding: 1rem;
+    padding: 1rem;justify-content: space-around;
+    align-content: space-around;
     border: 1px solid gray;
     border-radius: 1rem;
 }
+
+.filterPanelContainer{
+    background-color: white;
+
+    width: 14rem;
+    padding: 2rem;
+
+    border-radius: 1rem;
+    box-sizing: border-box;
+}
+

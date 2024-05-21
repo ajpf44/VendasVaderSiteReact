@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 import ProductList from "./components/ProductList";
-import { getAllProducts } from "../../services/prodcuts";
+import { getAllProducts } from "../../services/products";
 import "./Products.css";
 import FilterPanel from "./components/FilterProductsPanel";
 import { ProductType } from "../../types/ProductsTypes";

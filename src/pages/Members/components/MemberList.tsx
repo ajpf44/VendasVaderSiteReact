@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import MemberCard from './MemberCard';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import MemberCard from "./MemberCard";
 
 interface Member {
   id: number;
@@ -29,15 +29,19 @@ const MemberList: React.FC = () => {
 
   return (
     <div>
-      {members.map(member => (
-        <MemberCard key={member.id} name={member.name} role={member.role} email={member.email} />
+      {members.map((member) => (
+        <MemberCard
+          key={member.id}
+          name={member.name}
+          role={member.role}
+          email={member.email}
+        />
       ))}
     </div>
   );
 };
 
 export default MemberList;
-
 
 // Defini a estrutura de um membro.
 // Coloquei useState para controlar o estado dos membros e se está carregando.

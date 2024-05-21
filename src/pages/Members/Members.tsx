@@ -1,5 +1,5 @@
 import React from "react";
-import MemberList from "../../components/MemberList";
+import MemberList from "./components/MemberList";
 
 const MembersPage: React.FC = () => {
   return (

@@ -12,7 +12,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ id, name, price }) => {
   return (
     <div className="cardProductInfoContainer">
       <h3>{name}</h3>
-      <p>RS${price}</p>
+      <p>R$ {price}</p>
 
       <div className="cardButtonsContainer">
         <Button text="Adicionar ao Carrinho" onClick={() => {}} />

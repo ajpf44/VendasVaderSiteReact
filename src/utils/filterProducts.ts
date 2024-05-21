@@ -9,8 +9,9 @@ function filterProductsByTerm(
     const lcProdName: string = p.name.toLowerCase();
     const lcProdDescription: string = p.description.toLowerCase();
 
-
-    console.log(lcProdName.includes(lcTerm) || lcProdDescription.includes(lcTerm))
+    console.log(
+      lcProdName.includes(lcTerm) || lcProdDescription.includes(lcTerm)
+    );
     if (lcProdName.includes(lcTerm) || lcProdDescription.includes(lcTerm))
       return p;
   });
@@ -24,11 +25,11 @@ function filterProductsByPrice(
   max: string
 ): ProductType[] {
   const minFilter = Number(min) ?? 0;
-  
+
   const filteredProducts = products.filter((p) => {
-    const prodPrice = Number((p.price.replace(",",".")));
-    const maxFilter = max=="" ? prodPrice + 1: Number(max);
-    
+    const prodPrice = Number(p.price.replace(",", "."));
+    const maxFilter = max == "" ? prodPrice + 1 : Number(max);
+
     console.log(
       `Produto: ${p.name}\n
        Preço: ${prodPrice}\n
@@ -42,4 +43,4 @@ function filterProductsByPrice(
   return filteredProducts;
 }
 
-export { filterProductsByTerm, filterProductsByPrice};
+export { filterProductsByTerm, filterProductsByPrice };

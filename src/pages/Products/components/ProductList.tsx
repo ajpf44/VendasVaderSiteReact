@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ProductCard from "./ProductCard";
-import { getAllProducts } from "../../../services/prodcuts";
 import { ProductType } from "../../../types/ProductsTypes";
 
 interface ProductListProps {

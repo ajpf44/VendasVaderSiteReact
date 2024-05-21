@@ -1,10 +1,14 @@
 import React, { useState, useContext, FormEvent } from 'react';
 import { AuthContextType,AuthContext } from '../../../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom'
+
 
 const Login: React.FC = () => {
+   
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [error, setError] = useState<string | null>(null);
+    const navigate = useNavigate();
 
     const { signin } = useContext<AuthContextType>(AuthContext);
 
@@ -15,6 +19,7 @@ const Login: React.FC = () => {
         try {
             const userToken = await signin(email, password);
             console.log(userToken)
+          
             if (!userToken) {
                 setError('Corrija os dados!');
             }
@@ -24,6 +29,7 @@ const Login: React.FC = () => {
     };
 
     return (
+        <>
         <form onSubmit={handleSubmit}>
             <div>
                 <label htmlFor="email">Email:</label>
@@ -47,7 +53,12 @@ const Login: React.FC = () => {
             </div>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             <button type="submit">Login</button>
+           
         </form>
+        <button onClick={()=> navigate('/signup')}>SignUp </button>
+        </>
+         
+
     );
 };
 

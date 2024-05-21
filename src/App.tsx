@@ -12,12 +12,13 @@ import { CartProvider } from "./contexts/CartContext";
 import HeaderComponent from "./components/Header/HeaderComponent";
 import FooterComponent from "./components/Footer/FooterComponent";
 
-import "./App.css"
+import "./App.css";
 import AuthContextProvider from "./contexts/AuthContext";
+import SignUpPage from "./pages/SignUp/SignUp";
 
 const App: React.FC = () => {
   return (
-   < AuthContextProvider>
+    <AuthContextProvider>
       <CartProvider>
         <Router>
           <HeaderComponent />
@@ -28,11 +29,12 @@ const App: React.FC = () => {
             <Route path="/cart" element={<CartPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/members" element={<MembersPage />} />
+            <Route path="/signup" element={<SignUpPage/>} />
           </Routes>
           <FooterComponent />
         </Router>
       </CartProvider>
-      </AuthContextProvider>
+    </AuthContextProvider>
   );
 };
 

@@ -1,11 +1,12 @@
 import React from "react";
 import Login from "./components/Login";
+import TwoLogin from "./components/TwoLogin";
 
 const LoginPage: React.FC = () => {
   return (
     <div>
-      <h1>Login</h1>
-      <Login />
+      {/* <Login /> */}
+      <TwoLogin />
     </div>
   );
 };

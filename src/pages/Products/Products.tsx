@@ -13,8 +13,8 @@ const Products: React.FC = () => {
   
   //PAINEL DE PESQUISA
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [minPrice, setMinPrice] = useState<number>(0);
-  const [maxPrice, setMaxPrice] = useState<number>(1231233123);
+  const [minPrice, setMinPrice] = useState<string>('');
+  const [maxPrice, setMaxPrice] = useState<string>('');
 
   useEffect(() => {
     const setProductsFromDB = async () => {
@@ -29,13 +29,12 @@ const Products: React.FC = () => {
     setProductsFromDB();
   }, []);
 
-  const handleFilter = useCallback(() => {
-    let searchedProducts = filterProductsByTerm(products, searchTerm);
-    searchedProducts = filterProductsByPrice(searchedProducts, minPrice, maxPrice);
+  const handleFilter = useCallback((term="") => {
+    const searchedProducts = filterProductsByTerm(products, term);
+    const searchedAndFilteredProducts = filterProductsByPrice(searchedProducts, minPrice, maxPrice);
 
-    setProductsToShow(searchedProducts);
-    
-  }, [products, searchTerm]);
+    setProductsToShow(searchedAndFilteredProducts);
+  }, [products, searchTerm, minPrice, maxPrice]);
 
   return (
     <div className="geralContainer">
@@ -43,6 +42,10 @@ const Products: React.FC = () => {
         searchTerm={searchTerm}
         setSearchTerm={setSearchTerm}
         handleFilter={handleFilter}
+        setMinPrice={setMinPrice}
+        setMaxPrice={setMaxPrice}
+        minPrice={minPrice}
+        maxPrice={maxPrice}
       />
       <main className="mainContainer">
         <ProductList products={productsToShow} loading={loading} />
@@ -54,9 +57,11 @@ const Products: React.FC = () => {
 interface FilterPanelProps {
   searchTerm: string;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
-  setMinPrice: React.Dispatch<React.SetStateAction<number>>;
-  setMaxPrice: React.Dispatch<React.SetStateAction<number>>;
-  handleFilter: () => void;
+  setMinPrice: React.Dispatch<React.SetStateAction<string>>;
+  setMaxPrice: React.Dispatch<React.SetStateAction<string>>;
+  handleFilter: (term: string) => void;
+  minPrice: string;
+  maxPrice: string;
 }
 
 const FilterPanel: React.FC<FilterPanelProps> = ({
@@ -65,6 +70,8 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
   setMinPrice,
   setMaxPrice,
   handleFilter,
+  maxPrice,
+  minPrice,
 }) => {
   return (
     <div className="filterPanelContainer">
@@ -73,13 +80,9 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
           value={searchTerm}
           onChangeFunc={(evt) => {
             setSearchTerm(evt.target.value);
-            handleFilter();
+            handleFilter(evt.target.value);
           }}
-          onKeyDown={(evt) => {
-            if (evt.key === "Enter") {
-              handleFilter();
-            }
-          }}
+          onKeyDown={()=>{}}
         />
 
         <div className="priceFilterContainer">
@@ -87,13 +90,17 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
 
           <label htmlFor="">
             <span>Min</span>
-            <input type="number" name="" id="" onChange={(e)=>setMinPrice(e.target.value)}/>
+            <input type="number" name="" id="" value={minPrice} onChange={(e)=>setMinPrice(e.target.value)}/>
           </label>
 
           <label htmlFor="">
             <span>Max</span>
-            <input type="number" name="" id="" onChange={(e)=>setMaxPrice(e.target.value)}/>
-          </label>
+            <input  type="number" name="" id="" value={maxPrice} onChange={(e)=>setMaxPrice(String(e.target.value))}/>
+          </label>  
+
+          <button
+            onClick={()=>handleFilter("")}
+          >Filtrar</button>
         </div>
       </div>
     </div>

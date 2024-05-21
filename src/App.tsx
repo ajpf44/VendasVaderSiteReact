@@ -7,16 +7,17 @@ import ProductDetail from "./pages/Products/ProductDetail";
 import CartPage from "./pages/Cart/Cart";
 import LoginPage from "./pages/Login/Login";
 import MembersPage from "./pages/Members/Members";
-import { AuthProvider } from "./contexts/AuthContext";
+
 import { CartProvider } from "./contexts/CartContext";
 import HeaderComponent from "./components/Header/HeaderComponent";
 import FooterComponent from "./components/Footer/FooterComponent";
 
 import "./App.css"
+import AuthContextProvider from "./contexts/AuthContext";
 
 const App: React.FC = () => {
   return (
-    <AuthProvider>
+   < AuthContextProvider>
       <CartProvider>
         <Router>
           <HeaderComponent />
@@ -31,7 +32,7 @@ const App: React.FC = () => {
           <FooterComponent />
         </Router>
       </CartProvider>
-    </AuthProvider>
+      </AuthContextProvider>
   );
 };
 

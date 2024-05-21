@@ -1,41 +1,54 @@
-import React, { createContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import  { createContext, useState, ReactNode, FC } from 'react';
+import { login } from '../services/auth';
 
-interface AuthContextProps {
-  user: any;
-  login: (email: string, password: string) => Promise<void>;
-  logout: () => void;
+
+export interface AuthContextType {  
+    token: string | null;
+    isAuthenticated: boolean;
+    signin: (email: string, password: string) => Promise<string | undefined>;
+    logout: () => void;
 }
 
-export const AuthContext = createContext<AuthContextProps | null>(null);
+// Criando o contexto com tipagem inicial
+export const AuthContext = createContext<AuthContextType>({
+    token: null,
+    isAuthenticated: false,
+    signin: async () => undefined,
+    logout: () => {},
+});
 
-export const AuthProvider: React.FC = ( props:any ) => {
-  const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const response = await axios.get('/api/auth/check');
-        setUser(response.data.user);
-      } catch {
-        setUser(null);
-      }
+interface AuthContextProviderProps {
+    children: ReactNode;
+}
+
+const AuthContextProvider: FC<AuthContextProviderProps> = ({ children }) => {
+    const [token, setToken] = useState<string | null>(null);
+
+    const signin = async (email: string, password: string): Promise<string | undefined> => {
+        const userToken = await login(email, password);
+        if (userToken) {
+            setToken(userToken);
+        }
+        return userToken;
+    }
+
+    const logout = (): void => {
+        setToken(null);
+    }
+
+    const value: AuthContextType = {
+        token: token,
+        isAuthenticated: !!token,
+        signin: signin,
+        logout: logout,
     };
-    checkAuth();
-  }, []);
 
-  const login = async (email: string, password: string) => {
-    const response = await axios.post('/api/auth/login', { email, password });
-    setUser(response.data.user);
-  };
+    return (
+        <AuthContext.Provider value={value}>
+            {children}
+        </AuthContext.Provider>
+    );
+}
 
-  const logout = () => {
-    setUser(null);
-  };
-
-  return (
-    <AuthContext.Provider value={{ user, login, logout }}>
-      {props.children}
-    </AuthContext.Provider>
-  );
-};
+export default AuthContextProvider;

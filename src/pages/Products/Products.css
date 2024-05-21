@@ -89,8 +89,49 @@ main {
   width: 5rem;
 }
 
-.priceFilterContainer input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0; /* Optional: remove margin */
+/* PRODUCTS DETAIL PAGE */
+.productDetailContainer{
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 5rem 0;
 }
+.productDetailInfoContainer{
+  width: 40rem;
+  height: 30rem;
+
+  padding: 0 2rem;
+
+  display: flex;
+  flex-direction: column;
+
+  font-size: 1.3rem;
+  font-family: 'Courier New', Courier, monospace;
+}
+.productDetailInfoContainer > h2{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.productDetailInfoContainer > .infoBrandText{
+  margin-bottom: 1.2rem;
+}
+
+.infoPriceText > .spanPrice{
+  color: rgb(28, 28, 142)
+}
+.infoPriceText > .spanDiscount{
+  color: brown;
+  font-style: italic;
+  text-decoration: line-through;
+  margin-right: 1.5rem;
+}
+
+.infoDescriptionText{
+  margin-top: 2rem;
+  margin-bottom: 6rem;
+}
+
+
+

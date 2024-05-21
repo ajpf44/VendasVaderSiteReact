@@ -1,6 +1,7 @@
 .geralContainer {
   width: 100vw;
-  padding: 2em 0em;
+  min-height: 89.2vh;
+  
   background-color: lightgray;
   display: flex;
   flex-wrap: wrap;

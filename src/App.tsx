@@ -22,15 +22,16 @@ const App: React.FC = () => {
       <CartProvider>
         <Router>
           <HeaderComponent />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/product/:id" element={<ProductDetail />} />
-            <Route path="/cart" element={<CartPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/members" element={<MembersPage />} />
-            <Route path="/signup" element={<SignUpPage/>} />
-          </Routes>
+          <div style={{minHeight: "89.2vh"}}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/product/:id" element={<ProductDetail />} />
+              <Route path="/cart" element={<CartPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/members" element={<MembersPage />} />
+            </Routes>
+          </div>
           <FooterComponent />
         </Router>
       </CartProvider>

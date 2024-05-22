@@ -1,6 +1,6 @@
 import React from "react";
-import ProductCard from "./ProductCard";
 import { ProductType } from "../../../types/ProductsTypes";
+import ProductCardMUI from "./ProductCardMUI";
 
 interface ProductListProps {
   products: ProductType[];
@@ -16,12 +16,7 @@ const ProductList: React.FC<ProductListProps> = ({products, loading}) => {
       {products.map((product) => {
         return (
           <div className="productContainer" key={product.id}>
-            <img
-              src={`data:image/jpeg;base64,${product.image}`}
-              alt={`imagem do ${product.name}`}
-              style={{ width: "160px", height: "120px" }}
-            />
-            <ProductCard key={product.id} {...product} />
+            <ProductCardMUI key={product.id} {...product} />
           </div>
         );
       })}

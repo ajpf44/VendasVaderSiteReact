@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Button from "../../components/Button/Button";
+
+import CartShopButton from "../../components/Button/CartShopButton";
 import { getProductById } from "../../services/products";
 
 const ProductDetail: React.FC = () => {
@@ -41,11 +42,13 @@ const ProductDetail: React.FC = () => {
             <span className="spanDiscount">
               R${Number(product.price.replace(",", ".")) * 1.3}
             </span>
-            <span className="spanPrice">R${product.price.replace(",", ".")}</span>
+            <span className="spanPrice">
+              R${product.price.replace(",", ".")}
+            </span>
           </p>
           <p className="infoDescriptionText">{product.description}</p>
           <div className="infoButtonDiv">
-            <Button text="Adicionar ao Carrinho" onClick={() => {}} />
+            <CartShopButton />
           </div>
         </div>
       </section>

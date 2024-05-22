@@ -13,7 +13,6 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { AuthContext, AuthContextType } from "../../../contexts/AuthContext";
-import { Warning } from "@mui/icons-material";
 
 function Copyright(props: any) {
   return (

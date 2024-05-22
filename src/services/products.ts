@@ -11,7 +11,9 @@ async function getAllProducts(): Promise<ProductType[]>{
         for(const key in res.data){
             arrProducts.push({
                 ...res.data[key],
-                id: key
+                id: key,
+                price: (res.data[key].price * 5.15).toFixed(2) 
+                //Cotação do dolar 5.15 e formata para 2 casas decimais
             })
         }
 

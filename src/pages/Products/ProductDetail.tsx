@@ -30,20 +30,20 @@ const ProductDetail: React.FC = () => {
       <section className="productDetailContainer">
         <div>
           <img
-            src={`data:image/jpeg;base64,${product.image}`}
-            alt={`imagem do ${product.name}`}
+            src={`${product.images[0]}`}
+            alt={`imagem do ${product.title}`}
             style={{ width: "40rem", height: "30rem" }}
           />
         </div>
         <div className="productDetailInfoContainer">
-          <h2>{product.name}</h2>
-          <p className="infoBrandText">Genérico</p>
+          <h2>{product.title}</h2>
+          <p className="infoBrandText">{product.brand}</p>
           <p className="infoPriceText">
             <span className="spanDiscount">
-              R${Number(product.price.replace(",", ".")) * 1.3}
+              R${Number(product.price) * 1.3}
             </span>
             <span className="spanPrice">
-              R${product.price.replace(",", ".")}
+              R${product.price}
             </span>
           </p>
           <p className="infoDescriptionText">{product.description}</p>

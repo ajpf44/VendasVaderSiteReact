@@ -6,7 +6,7 @@ function filterProductsByTerm(
 ): ProductType[] {
   const filteredProducts = products.filter((p) => {
     const lcTerm = term.toLowerCase();
-    const lcProdName: string = p.name.toLowerCase();
+    const lcProdName: string = p.title.toLowerCase();
     const lcProdDescription: string = p.description.toLowerCase();
 
     console.log(
@@ -31,7 +31,7 @@ function filterProductsByPrice(
     const maxFilter = max == "" ? prodPrice + 1 : Number(max);
 
     console.log(
-      `Produto: ${p.name}\n
+      `Produto: ${p.title}\n
        Preço: ${prodPrice}\n
        MinFilter: ${minFilter} Max Filter: ${maxFilter}\n
        State: ${prodPrice >= minFilter && prodPrice <= maxFilter}

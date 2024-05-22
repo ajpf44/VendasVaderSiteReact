@@ -18,12 +18,12 @@ export default function ProductCardMUI(prod: ProductType) {
         <CardMedia
           component="img"
           height="140"
-          image={`data:image/jpeg;base64,${prod.image}`}
-          alt={`imagem de ${prod.name}`}
+          image={`${prod.thumbnail}`}
+          alt={`imagem de ${prod.title}`}
         />
         <CardContent>
-          <Typography gutterBottom variant="h6" component="div">
-            {prod.name}
+          <Typography gutterBottom variant="h6" component="div" sx={{whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden"}}>
+            {prod.title}
           </Typography>
           <Typography variant="body1" color="text.secondary">
             R$ {prod.price}

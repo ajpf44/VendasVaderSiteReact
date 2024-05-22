@@ -25,3 +25,6 @@ dist-ssr
 
 #enviroment variables
 #.env POR ENQUANTO PARA FACILITAR O DESENVOLVIMENTO
+
+#arquivo para automatizar algumas coisas
+test.js

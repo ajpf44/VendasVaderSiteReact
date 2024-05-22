@@ -1,14 +1,14 @@
 .geralContainer {
-  width: 100vw;
+  
   min-height: 89.2vh;
   
   background-color: lightgray;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-content: space-around;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
 
-  padding: 2rem;
+  padding:2rem ;
 }
 
 main {
@@ -25,6 +25,7 @@ main {
   flex-wrap: wrap;
   margin: auto;
   gap: 2rem;
+  flex-basis: 90rem;
 }
 
 .cardProductInfoContainer {
@@ -43,22 +44,17 @@ main {
   align-items: center;
 }
 
-.cardButtonsContainer > * {
-  width: 100%;
-}
-
-
 
 .filterPanelContainer {
   background-color: white;
 
-  width: 14rem;
+  width: 15rem;
   padding: 2rem;
 
   border-radius: 1rem;
   box-sizing: border-box;
 
-  height: 38.5em;
+  height: fit-content;
 }
 
 .priceFilterContainer {
@@ -71,7 +67,7 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  
 }
 
 .priceFilterContainer label input {

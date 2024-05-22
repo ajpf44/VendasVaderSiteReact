@@ -32,7 +32,7 @@ const ProductDetail: React.FC = () => {
           <img
             src={`${product.images[0]}`}
             alt={`imagem do ${product.title}`}
-            style={{ width: "40rem", height: "30rem" }}
+            style={{ maxWidth: "45rem", maxHeight: "35rem" }}
           />
         </div>
         <div className="productDetailInfoContainer">
@@ -40,10 +40,10 @@ const ProductDetail: React.FC = () => {
           <p className="infoBrandText">{product.brand}</p>
           <p className="infoPriceText">
             <span className="spanDiscount">
-              R${Number(product.price) * 1.3}
+              R${(Number(product.price) * 1.3 * 5.15).toFixed(2)}
             </span>
             <span className="spanPrice">
-              R${product.price}
+              R${((Number(product.price)  * 5.15) - 0.01).toFixed(2)}
             </span>
           </p>
           <p className="infoDescriptionText">{product.description}</p>

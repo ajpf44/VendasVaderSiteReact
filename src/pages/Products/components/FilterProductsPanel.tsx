@@ -22,15 +22,6 @@ interface FilterPanelProps {
     return (
       <div className="filterPanelContainer">
         <div className="custom-input">
-          <SearchInput
-            value={searchTerm}
-            onChangeFunc={(evt) => {
-              setSearchTerm(evt.target.value);
-              handleFilter(evt.target.value);
-            }}
-            onKeyDown={()=>{}}
-          />
-  
           <div className="priceFilterContainer">
             <h3>Preços</h3>
   

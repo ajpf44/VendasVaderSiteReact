@@ -8,14 +8,14 @@ import { Search } from '@mui/icons-material';
 type OnChangeFuncType = (evt: React.ChangeEvent<HTMLInputElement>) => void;
 
 interface SearchInputProps {
-  onChangeFunc: OnChangeFuncType;
-  value: string,
-  onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
+  onChangeFunc?: OnChangeFuncType;
+  value?: string,
+  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
 const SearchInput: React.FC<SearchInputProps> = ({onChangeFunc,value, onKeyDown}) => {
   return (
-    <Box sx={{ '& > :not(style)': { m: 1 } }}>
+    <Box sx={{ '& > :not(style)': { m: 1 }}}>
       <FormControl variant="standard">
         <InputLabel htmlFor="input-with-icon-adornment" style={{display: 'none'}}>
           Search
@@ -31,6 +31,7 @@ const SearchInput: React.FC<SearchInputProps> = ({onChangeFunc,value, onKeyDown}
           }
           onChange={onChangeFunc}
           onKeyDown={onKeyDown}
+          fullWidth
         />
       </FormControl>
     </Box>

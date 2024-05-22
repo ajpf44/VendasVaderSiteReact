@@ -4,16 +4,20 @@ import { getAllProducts } from "../../services/products";
 import "./Products.css";
 import FilterPanel from "./components/FilterProductsPanel";
 import { ProductType } from "../../types/ProductsTypes";
-import {filterProductsByTerm, filterProductsByPrice} from "../../utils/filterProducts";
+import {
+  filterProductsByTerm,
+  filterProductsByPrice,
+} from "../../utils/filterProducts";
+import SearchInput from "../../components/SearchInput";
 
 const Products: React.FC = () => {
   const [products, setProducts] = useState<ProductType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [productsToShow, setProductsToShow] = useState<ProductType[]>([]);
-  
+
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [minPrice, setMinPrice] = useState<string>('');
-  const [maxPrice, setMaxPrice] = useState<string>('');
+  const [minPrice, setMinPrice] = useState<string>("");
+  const [maxPrice, setMaxPrice] = useState<string>("");
 
   useEffect(() => {
     const setProductsFromDB = async () => {
@@ -28,27 +32,47 @@ const Products: React.FC = () => {
     setProductsFromDB();
   }, []);
 
-  const handleFilter = useCallback((term="") => {
-    const searchedProducts = filterProductsByTerm(products, term);
-    const searchedAndFilteredProducts = filterProductsByPrice(searchedProducts, minPrice, maxPrice);
+  const handleFilter = useCallback(
+    (term = "") => {
+      const searchedProducts = filterProductsByTerm(products, term);
+      const searchedAndFilteredProducts = filterProductsByPrice(
+        searchedProducts,
+        minPrice,
+        maxPrice
+      );
 
-    setProductsToShow(searchedAndFilteredProducts);
-  }, [products, searchTerm, minPrice, maxPrice]);
+      setProductsToShow(searchedAndFilteredProducts);
+    },
+    [products, searchTerm, minPrice, maxPrice]
+  );
 
   return (
     <div className="geralContainer">
-      <FilterPanel
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        handleFilter={handleFilter}
-        setMinPrice={setMinPrice}
-        setMaxPrice={setMaxPrice}
-        minPrice={minPrice}
-        maxPrice={maxPrice}
-      />
-      <main className="mainContainer">
-        <ProductList products={productsToShow} loading={loading} />
-      </main>
+      <div style={{ position: "absolute", top: -15 }}>
+        <SearchInput
+          value={searchTerm}
+          onChangeFunc={(evt) => {
+            setSearchTerm(evt.target.value);
+            handleFilter(evt.target.value);
+          }}
+          onKeyDown={() => {}}
+        />
+      </div>
+
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <FilterPanel
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          handleFilter={handleFilter}
+          setMinPrice={setMinPrice}
+          setMaxPrice={setMaxPrice}
+          minPrice={minPrice}
+          maxPrice={maxPrice}
+        />
+        <main className="mainContainer">
+          <ProductList products={productsToShow} loading={loading} />
+        </main>
+      </div>
     </div>
   );
 };

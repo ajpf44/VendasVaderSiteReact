@@ -13,6 +13,8 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { AuthContext, AuthContextType } from "../../../contexts/SessionContext";
+import { useNavigate } from 'react-router-dom'
+import CircularProgress from '@mui/material/CircularProgress';
 
 function Copyright(props: any) {
   return (
@@ -32,28 +34,34 @@ function Copyright(props: any) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function SignIn() {
+  const navigate = useNavigate();
   const [email, setEmail] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
   const [error, setError] = React.useState<string | null>(null);
-
+  const [loading, setLoading] = React.useState<boolean>(false);
   const { signin } = React.useContext<AuthContextType>(AuthContext);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError(null);
+    setLoading(true);
 
     try {
       const userToken = await signin(email, password);
       console.log(userToken);
       if (!userToken) {
         setError("Corrija os dados!");
+        setLoading(false);
+      } else {
+        navigate('/home'); // Redirecione para a página desejada após login bem-sucedido
       }
-    } catch (err) {
-      setError("Erro tente mais tarde.");
+    } catch (error) {
+      setError("Ocorreu um erro ao tentar fazer login. Por favor, tente novamente.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -105,19 +113,34 @@ export default function SignIn() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            {error ? <p style={{ color: "red" }}> {error}</p> : <></>}
+            {error && <p style={{ color: 'red' }}>{error}</p>}
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign In
-            </Button>
+            <Box sx={{ position: 'relative' }}>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                disabled={loading}
+              >
+                Sign In
+              </Button>
+              {loading && (
+                <CircularProgress
+                  size={24}
+                  sx={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    marginTop: '-12px',
+                    marginLeft: '-12px',
+                  }}
+                />
+              )}
+            </Box>
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
@@ -125,8 +148,8 @@ export default function SignIn() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/signUp" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link href="#" variant="body2" onClick={() => navigate('/SignUp')}>
+                  {"Não tem uma conta? Cadastre-se"}
                 </Link>
               </Grid>
             </Grid>

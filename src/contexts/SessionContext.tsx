@@ -1,6 +1,6 @@
 import { createContext, useState, ReactNode, FC } from "react";
 import { login, createUser } from "../services/auth";
-import { createUserAtFirebase } from "../services/users";
+import { createUserAtFirebase, getUserByEmail } from "../services/users";
 
 export interface SessionContextType {
   token: string | null;
@@ -31,6 +31,10 @@ const SessionContextProvider: FC<SessionContextProviderProps> = ({ children }) =
     password: string
   ): Promise<string | undefined> => {
     const userToken = await login(email, password);
+
+    const firebaseUser = await getUserByEmail(email);
+    console.log("Usuário: " + firebaseUser)
+
     if (userToken) {
       setToken(userToken);
     }

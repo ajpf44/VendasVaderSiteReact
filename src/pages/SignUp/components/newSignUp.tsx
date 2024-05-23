@@ -13,6 +13,8 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
+import { SessionContext, SessionContextType } from "../../../contexts/SessionContext";
+import CircularProgress from '@mui/material/CircularProgress';
 import { AuthContext, AuthContextType } from "../../../contexts/AuthContext";
 import CircularProgress from '@mui/material/CircularProgress';
 
@@ -39,26 +41,36 @@ const defaultTheme = createTheme();
 export default function MuiSignUp() {
   const [email, setEmail] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
+  const [firstName, setFirstName] = React.useState<string>("");
+  const [surName, setSurName] = React.useState<string>("");
   const [error, setError] = React.useState<string | null>(null);
+  const [loading, setLoading] = React.useState<boolean>(false);
   const [loading, setLoading] = React.useState<boolean>(false);
   const navigate = useNavigate();
 
-  const { signup } = React.useContext<AuthContextType>(AuthContext);
+  const { signup } = React.useContext<SessionContextType>(SessionContext);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setError(null);
     setLoading(true);
 
+    setLoading(true);
+
     try {
-      const token = await signup(email, password);
+      const token = await signup(email, password, `${firstName} ${surName}`);
       if (token) {
+        console.log("Registrado com Sucesso!");
+        navigate("/login");
         console.log("Registrado com Sucesso!");
         navigate("/login");
       } else {
         setError("Erro ao registrar");
       }
     } catch (err) {
+      setError("Erro durante registro");
+    } finally {
+      setLoading(false);
       setError("Erro durante registro");
     } finally {
       setLoading(false);
@@ -99,6 +111,7 @@ export default function MuiSignUp() {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  onChange={(e) => setFirstName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -109,6 +122,7 @@ export default function MuiSignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  onChange={(e) => setSurName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -136,6 +150,7 @@ export default function MuiSignUp() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
+              {error && <p style={{ color: 'red' }}>{error}</p>}
               {error && <p style={{ color: 'red' }}>{error}</p>}
               <Grid item xs={12}>
                 <FormControlLabel
@@ -169,8 +184,33 @@ export default function MuiSignUp() {
                 />
               )}
             </Box>
+            <Box sx={{ position: 'relative' }}>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                disabled={loading}
+              >
+                Sign Up
+              </Button>
+              {loading && (
+                <CircularProgress
+                  size={24}
+                  sx={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    marginTop: '-12px',
+                    marginLeft: '-12px',
+                  }}
+                />
+              )}
+            </Box>
             <Grid container justifyContent="flex-end">
               <Grid item>
+                <Link href="#" variant="body2" onClick={() => navigate('/login')}>
+                  Já tem uma conta? Entrar
                 <Link href="#" variant="body2" onClick={() => navigate('/login')}>
                   Já tem uma conta? Entrar
                 </Link>

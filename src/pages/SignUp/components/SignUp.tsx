@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { AuthContextType, AuthContext } from "../../../contexts/AuthContext";
+import { SessionContextType, SessionContext } from "../../../contexts/SessionContext";
 import { useNavigate } from "react-router-dom";
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState<string>("");
@@ -7,13 +7,13 @@ const SignIn: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const { signup } = useContext<AuthContextType>(AuthContext);
+  const { signup } = useContext<SessionContextType>(SessionContext);
 
   const handleSignup = async (event: React.FormEvent) => {
     event.preventDefault();
     setError(null);
     try {
-      const token = await signup(email, password);
+      const token = await signup(email, password, "");
       navigate("/login");
       if (token) {
         console.log("Resgistrado com Sucesso!");

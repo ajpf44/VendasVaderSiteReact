@@ -12,7 +12,9 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { AuthContext, AuthContextType } from "../../../contexts/AuthContext";
+import { SessionContext, SessionContextType } from "../../../contexts/SessionContext";
+import { useNavigate } from 'react-router-dom'
+import CircularProgress from '@mui/material/CircularProgress';
 import { useNavigate } from 'react-router-dom'
 import CircularProgress from '@mui/material/CircularProgress';
 
@@ -41,8 +43,8 @@ export default function SignIn() {
   const [email, setEmail] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
   const [error, setError] = React.useState<string | null>(null);
-  const [loading, setLoading] = React.useState<boolean>(false);
-  const { signin } = React.useContext<AuthContextType>(AuthContext);
+  const [loading, setLoading] = React.useState<boolean>(false);  const [loading, setLoading] = React.useState<boolean>(false);
+  const { signin } = React.useContext<SessionContextType>(SessionContext);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

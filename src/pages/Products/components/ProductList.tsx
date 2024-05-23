@@ -24,8 +24,10 @@ const ProductList: React.FC<ProductListProps> = ({ products, loading }) => {
         <div className="productContainer" key={product.id}>
           <ProductCardMUI key={product.id} {...product} />
         </div>
-      ))}
+        
+     ))}
     </div>
+      
   );
 };
 

@@ -1,5 +1,6 @@
 import { createContext, useState, ReactNode, FC } from "react";
 import { login, createUser } from "../services/auth";
+import SignIn from "../pages/Login/components/TwoLogin";
 
 export interface AuthContextType {
   token: string | null;
@@ -49,6 +50,7 @@ const AuthContextProvider: FC<AuthContextProviderProps> = ({ children }) => {
 
   const logout = (): void => {
     setToken(null);
+    console.log('ta tirando o token')
   };
 
   const value: AuthContextType = {

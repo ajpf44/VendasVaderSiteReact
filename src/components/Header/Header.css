@@ -1,18 +1,45 @@
+*{
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
 .header{
     background-color: #f8f8f8;
-    
+    font-family: 'Times New Roman', Times, serif;
     display: flex;
     justify-content: space-between;
     padding: 10px 20px;
 }
 
-.header h1{
-    font-size: 2rem;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight: bold;
+
+
+
+.ProductText{
+font-size: 150%;
+padding: 3%;
+margin-top: 4%;
+text-decoration-line: none;
+color: white;
 }
 
-.header nav{
-    display: flex;
-    gap: 2rem
-}
+    .inputSearch{
+        background-color:black;
+        border-radius: -2px;
+        align-items: center;
+        align-content: center;
+        margin-top: 30%;
+        
+    }
+
+  
+    
+input::placeholder {
+    color:white ; 
+    opacity: 100; 
+  }
+  
+  .officialLogo{
+    width: 9rem;
+   
+  }
+ 

@@ -56,7 +56,7 @@ export default function SignIn() {
         setError("Corrija os dados!");
         setLoading(false);
       } else {
-        navigate('/home'); // Redirecione para a página desejada após login bem-sucedido
+        navigate('/Products'); // Redirecione para a página desejada após login bem-sucedido
       }
     } catch (error) {
       setError("Ocorreu um erro ao tentar fazer login. Por favor, tente novamente.");

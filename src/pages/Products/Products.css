@@ -91,10 +91,10 @@ main {
   flex-direction: column;
 
   font-size: 1.3rem;
-  font-family: 'Courier New', Courier, monospace;
+  /* font-family: 'Courier New', Courier, monospace; */
 }
 .productDetailInfoContainer > h2{
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  /* font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; */
 
   font-size: 2rem;
   margin-bottom: 0.5rem;

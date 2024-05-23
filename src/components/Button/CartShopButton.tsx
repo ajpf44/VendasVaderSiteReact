@@ -18,7 +18,7 @@ const CartShopButton: React.FC<ButtonProps> = ({ onClick }) => {
       fullWidth
       endIcon={ <AddShoppingCart></AddShoppingCart>}
     >
-      Adicioanr ao
+      Adicioanar ao
     </ButtonMUI>
     // <button className="beautiful-button" onClick={onClick}>
     //   {text}

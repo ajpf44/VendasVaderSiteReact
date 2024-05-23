@@ -1,4 +1,4 @@
-import { Input, InputAdornment, InputLabel } from "@mui/material";
+import { Card, Input, InputAdornment, InputLabel } from "@mui/material";
 import ButtonEmpty from "../../../components/Button/ButtonEmpty";
 
 interface FilterPanelProps {
@@ -19,7 +19,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
   minPrice,
 }) => {
   return (
-    <div className="filterPanelContainer">
+    <Card className="filterPanelContainer">
       <div className="custom-input">
         <div className="priceFilterContainer">
           <h3>Preços</h3>
@@ -57,7 +57,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
           <ButtonEmpty onClick={() => handleFilter("")}>Filtrar</ButtonEmpty>
         </div>
       </div>
-    </div>
+    </Card>
   );
 };
 

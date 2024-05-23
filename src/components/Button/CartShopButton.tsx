@@ -1,6 +1,6 @@
 import React from "react";
 import { Button as ButtonMUI } from "@mui/material";
-import { AddShoppingCart } from "@mui/icons-material";
+import { ShoppingCartOutlined } from "@mui/icons-material";
 
 interface ButtonProps {
   text?: string;
@@ -13,10 +13,10 @@ const CartShopButton: React.FC<ButtonProps> = ({ onClick }) => {
   return (
     <ButtonMUI
       onClick={onClick}
-      variant="contained"
+      variant="outlined"
       color="secondary"
       fullWidth
-      endIcon={ <AddShoppingCart></AddShoppingCart>}
+      endIcon={ <ShoppingCartOutlined></ShoppingCartOutlined>}
     >
       Adicioanr ao
     </ButtonMUI>

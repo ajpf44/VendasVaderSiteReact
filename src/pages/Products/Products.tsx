@@ -9,6 +9,7 @@ import {
   filterProductsByPrice,
 } from "../../utils/filterProducts";
 import SearchInput from "../../components/SearchInput";
+import { Container } from "@mui/material";
 
 const Products: React.FC = () => {
   const [products, setProducts] = useState<ProductType[]>([]);
@@ -69,9 +70,9 @@ const Products: React.FC = () => {
           minPrice={minPrice}
           maxPrice={maxPrice}
         />
-        <main className="mainContainer">
+        <Container className="mainContainer">
           <ProductList products={productsToShow} loading={loading} />
-        </main>
+        </Container>
       </div>
     </div>
   );

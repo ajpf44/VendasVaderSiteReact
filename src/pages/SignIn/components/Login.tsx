@@ -12,7 +12,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { AuthContext, AuthContextType } from "../../../contexts/AuthContext";
+import { SessionContext, SessionContextType } from "../../../contexts/SessionContext";
 import { useNavigate } from 'react-router-dom'
 import CircularProgress from '@mui/material/CircularProgress';
 
@@ -36,13 +36,13 @@ function Copyright(props: any) {
 
 const defaultTheme = createTheme();
 
-export default function SignIn() {
+export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
   const [error, setError] = React.useState<string | null>(null);
   const [loading, setLoading] = React.useState<boolean>(false);
-  const { signin } = React.useContext<AuthContextType>(AuthContext);
+  const { signin } = React.useContext<SessionContextType>(SessionContext);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -56,7 +56,7 @@ export default function SignIn() {
         setError("Corrija os dados!");
         setLoading(false);
       } else {
-        navigate('/Products'); // Redirecione para a página desejada após login bem-sucedido
+        navigate('/'); // Redirecione para a página desejada após login bem-sucedido
       }
     } catch (error) {
       setError("Ocorreu um erro ao tentar fazer login. Por favor, tente novamente.");

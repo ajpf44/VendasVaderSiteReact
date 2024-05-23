@@ -1,31 +1,26 @@
 .geralContainer {
-  
   min-height: 89.2vh;
-  
-  background-color: lightgray;
+
+  background-color: white;
+  background-color: rgba(211, 211, 211, 0.509);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 2rem;
 
-  padding:2rem ;
+  padding: 2rem;
 }
 
 main {
   display: flex;
-  justify-content: center;
-  width: calc(100% - 18rem);
-  box-sizing: border-box;
-  /* Ensure children have a minimum width to prevent collapsing */
-  min-width: 15rem;
+  max-width: 80vw;
 }
 
 .listContainer {
   display: flex;
   flex-wrap: wrap;
-  margin: auto;
   gap: 2rem;
-  flex-basis: 90rem;
 }
 
 .cardProductInfoContainer {
@@ -43,7 +38,6 @@ main {
   justify-content: center;
   align-items: center;
 }
-
 
 .filterPanelContainer {
   background-color: white;
@@ -67,7 +61,6 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
 }
 
 .priceFilterContainer label input {
@@ -75,13 +68,13 @@ main {
 }
 
 /* PRODUCTS DETAIL PAGE */
-.productDetailContainer{
+.productDetailContainer {
   display: flex;
   justify-content: center;
   gap: 2rem;
   padding: 5rem 0;
 }
-.productDetailInfoContainer{
+.productDetailInfoContainer {
   width: 40rem;
   height: 30rem;
 
@@ -99,24 +92,21 @@ main {
   font-size: 2rem;
   margin-bottom: 0.5rem;
 }
-.productDetailInfoContainer > .infoBrandText{
+.productDetailInfoContainer > .infoBrandText {
   margin-bottom: 1.2rem;
 }
 
-.infoPriceText > .spanPrice{
-  color: rgb(28, 28, 142)
+.infoPriceText > .spanPrice {
+  color: rgb(28, 28, 142);
 }
-.infoPriceText > .spanDiscount{
+.infoPriceText > .spanDiscount {
   color: brown;
   font-style: italic;
   text-decoration: line-through;
   margin-right: 1.5rem;
 }
 
-.infoDescriptionText{
+.infoDescriptionText {
   margin-top: 2rem;
   margin-bottom: 6rem;
 }
-
-
-

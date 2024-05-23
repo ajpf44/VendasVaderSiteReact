@@ -1,10 +1,10 @@
 import React from "react";
-import MuiSignUp from "./components/newSignUp";
+import SignUp from "./components/SignUp";
 
 const SignUpPage: React.FC = () => {
   return (
     <div>
-      <MuiSignUp />
+      <SignUp />
     </div>
   );
 };

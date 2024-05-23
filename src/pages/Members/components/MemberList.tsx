@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, {  useState } from "react";
 import MemberCard from "./MemberCard";
 
 interface Member {
@@ -10,8 +9,8 @@ interface Member {
 }
 
 const MemberList: React.FC = () => {
-  const [members, setMembers] = useState<Member[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [members, ] = useState<Member[]>([]);
+  const [loading, ] = useState(true);
 
   // useEffect(() => {
   //   axios.get('/api/members')

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Replace with your actual Firebase project's API key
-const API_KEY = " AIzaSyACurpnmpmOHDrXrfMyKliLzLMTDuEYmhA";
+const API_KEY = "AIzaSyACurpnmpmOHDrXrfMyKliLzLMTDuEYmhA";
 
 const URL_API = 'https://identitytoolkit.googleapis.com/v1/accounts:';
 

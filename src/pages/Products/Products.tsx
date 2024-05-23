@@ -59,7 +59,7 @@ const Products: React.FC = () => {
         />
       </div>
 
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <div style={{display: "flex", gap: '2rem'}}>
         <FilterPanel
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}

@@ -30,13 +30,14 @@ function filterProductsByPrice(
     const prodPrice = Number(p.price.replace(",", "."));
     const maxFilter = max == "" ? prodPrice + 1 : Number(max);
 
-    console.log(
-      `Produto: ${p.title}\n
-       Preço: ${prodPrice}\n
-       MinFilter: ${minFilter} Max Filter: ${maxFilter}\n
-       State: ${prodPrice >= minFilter && prodPrice <= maxFilter}
-      `
-    );
+    // console.log(
+    //   `Produto: ${p.title}\n
+    //    Preço: ${prodPrice}\n
+    //    MinFilter: ${minFilter} Max Filter: ${maxFilter}\n
+    //    State: ${prodPrice >= minFilter && prodPrice <= maxFilter}
+    //   `
+    // );
+    
     if (prodPrice >= minFilter && prodPrice <= maxFilter) return p;
   });
 

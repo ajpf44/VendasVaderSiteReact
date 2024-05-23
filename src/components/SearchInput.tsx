@@ -32,6 +32,7 @@ const SearchInput: React.FC<SearchInputProps> = ({onChangeFunc,value, onKeyDown}
           onChange={onChangeFunc}
           onKeyDown={onKeyDown}
           fullWidth
+          color="secondary"
         />
       </FormControl>
     </Box>

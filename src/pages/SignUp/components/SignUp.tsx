@@ -13,8 +13,11 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
-import { SessionContext, SessionContextType } from "../../../contexts/SessionContext";
-import CircularProgress from '@mui/material/CircularProgress';
+import {
+  SessionContext,
+  SessionContextType,
+} from "../../../contexts/SessionContext";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function Copyright(props: any) {
   return (
@@ -52,15 +55,11 @@ export default function MuiSignUp() {
     setError(null);
     setLoading(true);
 
-    setLoading(true);
-
     try {
       const token = await signup(email, password, `${firstName} ${surName}`);
       if (token) {
         console.log("Registrado com Sucesso!");
-        navigate("/login");
-        console.log("Registrado com Sucesso!");
-        navigate("/login");
+        navigate("/");
       } else {
         setError("Erro ao registrar");
       }
@@ -68,7 +67,6 @@ export default function MuiSignUp() {
       setError("Erro durante registro");
     } finally {
       setLoading(false);
-      setError("Erro durante registro");
     }
   };
 
@@ -145,8 +143,8 @@ export default function MuiSignUp() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
-              {error && <p style={{ color: 'red' }}>{error}</p>}
-              {error && <p style={{ color: 'red' }}>{error}</p>}
+              {error && <p style={{ color: "red" }}>{error}</p>}
+              {error && <p style={{ color: "red" }}>{error}</p>}
               <Grid item xs={12}>
                 <FormControlLabel
                   control={
@@ -156,7 +154,7 @@ export default function MuiSignUp() {
                 />
               </Grid>
             </Grid>
-            <Box sx={{ position: 'relative' }}>
+            <Box sx={{ position: "relative" }}>
               <Button
                 type="submit"
                 fullWidth
@@ -170,18 +168,22 @@ export default function MuiSignUp() {
                 <CircularProgress
                   size={24}
                   sx={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    marginTop: '-12px',
-                    marginLeft: '-12px',
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    marginTop: "-12px",
+                    marginLeft: "-12px",
                   }}
                 />
               )}
             </Box>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2" onClick={() => navigate('/login')}>
+                <Link
+                  href="#"
+                  variant="body2"
+                  onClick={() => navigate("/login")}
+                >
                   Já tem uma conta? Entrar
                 </Link>
               </Grid>

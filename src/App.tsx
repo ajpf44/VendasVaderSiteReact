@@ -14,6 +14,7 @@ import FooterComponent from "./components/Footer/FooterComponent";
 
 import "./App.css";
 import SessionContextProvider from "./contexts/SessionContext";
+import NotFound from "./components/NotFound";
 
 const App: React.FC = () => {
   return (
@@ -30,6 +31,7 @@ const App: React.FC = () => {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signUp" element={<SignUpPage />} />
               <Route path="/members" element={<MembersPage />} />
+              <Route path="*" element={<NotFound/>} />
             </Routes>
           </div>
           <FooterComponent />

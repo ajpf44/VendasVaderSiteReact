@@ -56,7 +56,7 @@ export default function Login() {
         setError("Corrija os dados!");
         setLoading(false);
       } else {
-        navigate('/home'); // Redirecione para a página desejada após login bem-sucedido
+        navigate('/'); // Redirecione para a página desejada após login bem-sucedido
       }
     } catch (error) {
       setError("Ocorreu um erro ao tentar fazer login. Por favor, tente novamente.");

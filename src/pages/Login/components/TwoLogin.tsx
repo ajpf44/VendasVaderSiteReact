@@ -12,7 +12,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { AuthContext, AuthContextType } from "../../../contexts/AuthContext";
+import { AuthContext, AuthContextType } from "../../../contexts/SessionContext";
 
 function Copyright(props: any) {
   return (
@@ -105,7 +105,7 @@ export default function SignIn() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            {error?<p style={{color: 'red'}}> {error}</p>:<></>}
+            {error ? <p style={{ color: "red" }}> {error}</p> : <></>}
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
@@ -125,7 +125,7 @@ export default function SignIn() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/signUp" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

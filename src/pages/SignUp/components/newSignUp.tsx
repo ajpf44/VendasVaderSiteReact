@@ -13,7 +13,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
-import { AuthContext, AuthContextType } from "../../../contexts/AuthContext";
+import { SessionContext, SessionContextType } from "../../../contexts/SessionContext";
 
 function Copyright(props: any) {
   return (
@@ -39,19 +39,21 @@ const defaultTheme = createTheme();
 export default function MuiSignUp() {
   const [email, setEmail] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
+  const [firstName, setFirstName] = React.useState<string>("");
+  const [surName, setSurName] = React.useState<string>("");
   const [error, setError] = React.useState<string | null>(null);
   const navigate = useNavigate();
 
-  const { signup } = React.useContext<AuthContextType>(AuthContext);
+  const { signup } = React.useContext<SessionContextType>(SessionContext);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setError(null);
     try {
-      const token = await signup(email, password);
+      const token = await signup(email, password, `${firstName} ${surName}`);
       if (token) {
-          console.log("Resgistrado com Sucesso!");
-          navigate("/login");
+        console.log("Resgistrado com Sucesso!");
+        navigate("/login");
       } else {
         setError("Erro ao registrar");
       }
@@ -94,6 +96,7 @@ export default function MuiSignUp() {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  onChange={(e) => setFirstName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -104,6 +107,7 @@ export default function MuiSignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                  onChange={(e) => setSurName(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -131,7 +135,7 @@ export default function MuiSignUp() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
-              {error?<p style={{color: 'red'}}> {error}</p>:<></>}
+              {error ? <p style={{ color: "red" }}> {error}</p> : <></>}
               <Grid item xs={12}>
                 <FormControlLabel
                   control={

@@ -13,15 +13,15 @@ import HeaderComponent from "./components/Header/HeaderComponent";
 import FooterComponent from "./components/Footer/FooterComponent";
 
 import "./App.css";
-import AuthContextProvider from "./contexts/AuthContext";
+import SessionContextProvider from "./contexts/SessionContext";
 
 const App: React.FC = () => {
   return (
-    <AuthContextProvider>
-      <CartProvider>
+    <CartProvider>
+      <SessionContextProvider>
         <Router>
           <HeaderComponent />
-          <div style={{minHeight: "89.2vh"}}>
+          <div style={{ minHeight: "89.2vh" }}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/products" element={<Products />} />
@@ -34,8 +34,8 @@ const App: React.FC = () => {
           </div>
           <FooterComponent />
         </Router>
-      </CartProvider>
-    </AuthContextProvider>
+      </SessionContextProvider>
+    </CartProvider>
   );
 };
 

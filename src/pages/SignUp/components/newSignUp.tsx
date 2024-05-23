@@ -14,6 +14,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { AuthContext, AuthContextType } from "../../../contexts/AuthContext";
+import CircularProgress from '@mui/material/CircularProgress';
 
 function Copyright(props: any) {
   return (
@@ -33,13 +34,13 @@ function Copyright(props: any) {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function MuiSignUp() {
   const [email, setEmail] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
   const [error, setError] = React.useState<string | null>(null);
+  const [loading, setLoading] = React.useState<boolean>(false);
   const navigate = useNavigate();
 
   const { signup } = React.useContext<AuthContextType>(AuthContext);
@@ -47,16 +48,20 @@ export default function MuiSignUp() {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setError(null);
+    setLoading(true);
+
     try {
       const token = await signup(email, password);
       if (token) {
-          console.log("Resgistrado com Sucesso!");
-          navigate("/login");
+        console.log("Registrado com Sucesso!");
+        navigate("/login");
       } else {
         setError("Erro ao registrar");
       }
     } catch (err) {
-      setError("erro durante registro");
+      setError("Erro durante registro");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -131,7 +136,7 @@ export default function MuiSignUp() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
-              {error?<p style={{color: 'red'}}> {error}</p>:<></>}
+              {error && <p style={{ color: 'red' }}>{error}</p>}
               <Grid item xs={12}>
                 <FormControlLabel
                   control={
@@ -141,18 +146,33 @@ export default function MuiSignUp() {
                 />
               </Grid>
             </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              Sign Up
-            </Button>
+            <Box sx={{ position: 'relative' }}>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                sx={{ mt: 3, mb: 2 }}
+                disabled={loading}
+              >
+                Sign Up
+              </Button>
+              {loading && (
+                <CircularProgress
+                  size={24}
+                  sx={{
+                    position: 'absolute',
+                    top: '50%',
+                    left: '50%',
+                    marginTop: '-12px',
+                    marginLeft: '-12px',
+                  }}
+                />
+              )}
+            </Box>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
+                <Link href="#" variant="body2" onClick={() => navigate('/login')}>
+                  Já tem uma conta? Entrar
                 </Link>
               </Grid>
             </Grid>

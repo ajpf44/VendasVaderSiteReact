@@ -36,7 +36,7 @@ function Copyright(props: any) {
 
 const defaultTheme = createTheme();
 
-export default function SignIn() {
+export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");

@@ -8,7 +8,7 @@ const Login: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const { signin } = useContext<AuthContextType>(AuthContext);
+  const { signin } = useContext<SessionContextType>(SessionContext);
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -16,7 +16,6 @@ const Login: React.FC = () => {
 
     try {
       const userToken = await signin(email, password);
-      console.log(userToken);
 
       if (!userToken) {
         setError("Corrija os dados!");

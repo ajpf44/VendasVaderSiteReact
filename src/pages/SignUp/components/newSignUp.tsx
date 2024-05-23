@@ -15,8 +15,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { SessionContext, SessionContextType } from "../../../contexts/SessionContext";
 import CircularProgress from '@mui/material/CircularProgress';
-import { AuthContext, AuthContextType } from "../../../contexts/AuthContext";
-import CircularProgress from '@mui/material/CircularProgress';
 
 function Copyright(props: any) {
   return (
@@ -45,7 +43,6 @@ export default function MuiSignUp() {
   const [surName, setSurName] = React.useState<string>("");
   const [error, setError] = React.useState<string | null>(null);
   const [loading, setLoading] = React.useState<boolean>(false);
-  const [loading, setLoading] = React.useState<boolean>(false);
   const navigate = useNavigate();
 
   const { signup } = React.useContext<SessionContextType>(SessionContext);
@@ -72,8 +69,6 @@ export default function MuiSignUp() {
     } finally {
       setLoading(false);
       setError("Erro durante registro");
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -184,33 +179,8 @@ export default function MuiSignUp() {
                 />
               )}
             </Box>
-            <Box sx={{ position: 'relative' }}>
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                sx={{ mt: 3, mb: 2 }}
-                disabled={loading}
-              >
-                Sign Up
-              </Button>
-              {loading && (
-                <CircularProgress
-                  size={24}
-                  sx={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    marginTop: '-12px',
-                    marginLeft: '-12px',
-                  }}
-                />
-              )}
-            </Box>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2" onClick={() => navigate('/login')}>
-                  Já tem uma conta? Entrar
                 <Link href="#" variant="body2" onClick={() => navigate('/login')}>
                   Já tem uma conta? Entrar
                 </Link>

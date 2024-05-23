@@ -15,8 +15,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { SessionContext, SessionContextType } from "../../../contexts/SessionContext";
 import { useNavigate } from 'react-router-dom'
 import CircularProgress from '@mui/material/CircularProgress';
-import { useNavigate } from 'react-router-dom'
-import CircularProgress from '@mui/material/CircularProgress';
 
 function Copyright(props: any) {
   return (
@@ -43,7 +41,7 @@ export default function SignIn() {
   const [email, setEmail] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
   const [error, setError] = React.useState<string | null>(null);
-  const [loading, setLoading] = React.useState<boolean>(false);  const [loading, setLoading] = React.useState<boolean>(false);
+  const [loading, setLoading] = React.useState<boolean>(false);
   const { signin } = React.useContext<SessionContextType>(SessionContext);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {

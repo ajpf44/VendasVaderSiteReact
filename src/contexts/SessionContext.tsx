@@ -2,8 +2,11 @@ import { createContext, useState, ReactNode, FC } from "react";
 import { login, createUser } from "../services/auth";
 import { createUserAtFirebase, getUserByEmail } from "../services/users";
 
+import UserType from "../types/UserType";
+
 export interface SessionContextType {
   token: string | null;
+  user: UserType | undefined;
   isAuthenticated: boolean;
   signin: (email: string, password: string) => Promise<string | undefined>;
   signup: (email: string, password: string, name: string) => Promise<string | undefined>;
@@ -13,6 +16,7 @@ export interface SessionContextType {
 // Criando o contexto com tipagem inicial
 export const SessionContext = createContext<SessionContextType>({
   token: null,
+  user: undefined,
   isAuthenticated: false,
   signin: async () => undefined,
   signup: async () => undefined,
@@ -25,6 +29,7 @@ interface SessionContextProviderProps {
 
 const SessionContextProvider: FC<SessionContextProviderProps> = ({ children }) => {
   const [token, setToken] = useState<string | null>(null);
+  const [user, setUser] = useState<UserType>();
 
   const signin = async (
     email: string,
@@ -32,11 +37,12 @@ const SessionContextProvider: FC<SessionContextProviderProps> = ({ children }) =
   ): Promise<string | undefined> => {
     const userToken = await login(email, password);
 
-    const firebaseUser = await getUserByEmail(email);
-    console.log("Usuário: " + firebaseUser)
-
+    
     if (userToken) {
       setToken(userToken);
+
+      const firebaseUser = await getUserByEmail(email);
+      setUser(firebaseUser);
     }
     return userToken;
   };
@@ -52,10 +58,13 @@ const SessionContextProvider: FC<SessionContextProviderProps> = ({ children }) =
       
       const newUser: UserType = {
         name: name,
-        email: email 
+        email: email,
+        adress: "",
+        cart: undefined  
       }
-
+      
       createUserAtFirebase(newUser)
+      setUser(newUser);
     }
     return userToken;
   };
@@ -66,6 +75,7 @@ const SessionContextProvider: FC<SessionContextProviderProps> = ({ children }) =
 
   const value: SessionContextType = {
     token: token,
+    user: user,
     isAuthenticated: !!token,
     signin: signin,
     signup: signup,

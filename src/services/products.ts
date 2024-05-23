@@ -1,12 +1,10 @@
 import { ProductType } from "../types/ProductsTypes";
 import api from "./api";
 
-const baseURL = import.meta.env.VITE_API_URL 
-
 async function getAllProducts(): Promise<ProductType[]>{
     const arrProducts:Array<ProductType> = [];
     try {
-        const res = await api.get(baseURL + '/products.json')
+        const res = await api.get('/products.json')
         
         for(const key in res.data){
             arrProducts.push({
@@ -27,7 +25,7 @@ async function getAllProducts(): Promise<ProductType[]>{
 
 async function getProductById(id: string): Promise<ProductType | null>{
     try {
-        const {data} = await api.get(baseURL + `/products/${id}.json`)
+        const {data} = await api.get(`/products/${id}.json`)
 
         return data;
     } catch (error) {
@@ -38,8 +36,8 @@ async function getProductById(id: string): Promise<ProductType | null>{
 
 async function storageProducts(product: ProductType){
     try {
-        const res = await api.post(baseURL + '/products.json', product)
-
+        const res = await api.post('/products.json', product)
+        
         console.log(res);   
     } catch (error) {
         console.log("Error storing products: "  +error)

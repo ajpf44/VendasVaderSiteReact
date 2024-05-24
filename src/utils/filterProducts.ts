@@ -9,9 +9,6 @@ function filterProductsByTerm(
     const lcProdName: string = p.title.toLowerCase();
     const lcProdDescription: string = p.description.toLowerCase();
 
-    console.log(
-      lcProdName.includes(lcTerm) || lcProdDescription.includes(lcTerm)
-    );
     if (lcProdName.includes(lcTerm) || lcProdDescription.includes(lcTerm))
       return p;
   });
@@ -44,4 +41,12 @@ function filterProductsByPrice(
   return filteredProducts;
 }
 
-export { filterProductsByTerm, filterProductsByPrice };
+function filterProductsByCategory(
+  products: ProductType[],
+  categoriesStatus: Record<string, boolean>
+): ProductType[] {
+
+  return products.filter(product => categoriesStatus[product.category])
+}
+
+export { filterProductsByTerm, filterProductsByPrice,filterProductsByCategory };

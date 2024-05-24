@@ -11,7 +11,6 @@ import {
   InputLabel,
 } from "@mui/material";
 import ButtonEmpty from "../../../components/Button/ButtonEmpty";
-import { useEffect } from "react";
 
 interface FilterPanelProps {
   searchTerm: string;
@@ -24,6 +23,7 @@ interface FilterPanelProps {
   prodCategories: Set<string>;
   checkboxesStatus: any;
   setCheckboxesStatus: React.Dispatch<React.SetStateAction<{}>>;
+  handleCheckboxChange: (category: string) => void;
 }
 
 const FilterPanel: React.FC<FilterPanelProps> = ({
@@ -34,18 +34,8 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
   minPrice,
   prodCategories,
   checkboxesStatus,
-  setCheckboxesStatus,
+  handleCheckboxChange
 }) => {
-
-  useEffect(() => {
-    setCheckboxesStatus( prevStatus => {
-      const newStatus: any = {}
-      prodCategories.forEach(category => {
-        newStatus[category] = true
-      })
-      return newStatus  
-    })
-  },[])
 
   return (
     <Card
@@ -103,14 +93,10 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
                     key={index}
                     control={
                       <Checkbox
-                        checked={checkboxesStatus[category]?? true}
-                        onChange={(e) => {
-                          setCheckboxesStatus({
-                           ...checkboxesStatus,
-                            [category]: !checkboxesStatus[category],
-                          });
-                        }}
                         name={category}
+                        checked={checkboxesStatus[category]}
+                        onChange={() => handleCheckboxChange(category)}
+                        color="secondary"
                       />
                     }
                     label={category}

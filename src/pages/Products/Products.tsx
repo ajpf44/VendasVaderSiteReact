@@ -9,6 +9,7 @@ import {
   filterProductsByPrice,
 } from "../../utils/filterProducts";
 import SearchInput from "../../components/SearchInput";
+import { Box, Container } from "@mui/material";
 
 const Products: React.FC = () => {
   const [products, setProducts] = useState<ProductType[]>([]);
@@ -47,8 +48,8 @@ const Products: React.FC = () => {
   );
 
   return (
-    <div className="geralContainer">
-      <div style={{ position: "absolute", top: -15 }}>
+    <>
+      <div style={{ position: "absolute", top: -20, left: "50%", transform: "translateX(-50%)" }}>
         <SearchInput
           value={searchTerm}
           onChangeFunc={(evt) => {
@@ -58,8 +59,9 @@ const Products: React.FC = () => {
           onKeyDown={() => {}}
         />
       </div>
+    <Container className="geralContainer" maxWidth="xl" >
 
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <div style={{display: "flex", gap: '2rem'}}>
         <FilterPanel
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm}
@@ -69,11 +71,12 @@ const Products: React.FC = () => {
           minPrice={minPrice}
           maxPrice={maxPrice}
         />
-        <main className="mainContainer">
+        <Box className="mainContainer">
           <ProductList products={productsToShow} loading={loading} />
-        </main>
+        </Box>
       </div>
-    </div>
+    </Container>
+    </>
   );
 };
 

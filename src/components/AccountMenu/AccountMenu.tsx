@@ -1,9 +1,19 @@
-import React, { useContext } from 'react';
-import { Avatar, IconButton, Menu, MenuItem, Tooltip } from '@mui/material';
-import { Link } from 'react-router-dom';
-import { SessionContext } from '../../../../src/contexts/SessionContext';
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Divider from '@mui/material/Divider';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
+import PersonAdd from '@mui/icons-material/PersonAdd';
+import Settings from '@mui/icons-material/Settings';
+import Logout from '@mui/icons-material/Logout';
+import { SessionContext } from "../../contexts/SessionContext";
+import { useContext } from "react";
 
-const AccountMenu: React.FC = () => {
+export default function AccountMenu() {
   const { logout } = useContext(SessionContext);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -70,24 +80,33 @@ const AccountMenu: React.FC = () => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem component={Link} to="/profile" onClick={handleClose}>
+        <MenuItem onClick={handleClose}>
           <Avatar /> Profile
         </MenuItem>
-        <MenuItem component={Link} to="/myaccount" onClick={handleClose}>
+        <MenuItem onClick={handleClose}>
           <Avatar /> My account
         </MenuItem>
-        <MenuItem component={Link} to="/addaccount" onClick={handleClose}>
-          <Avatar /> Add another account
+        <Divider />
+        <MenuItem onClick={handleClose}>
+          <ListItemIcon>
+            <PersonAdd fontSize="small" />
+          </ListItemIcon>
+          Add another account
         </MenuItem>
-        <MenuItem component={Link} to="/settings" onClick={handleClose}>
-          <Avatar /> Settings
+        <MenuItem onClick={handleClose}>
+          <ListItemIcon>
+            <Settings fontSize="small" />
+          </ListItemIcon>
+          Settings
         </MenuItem>
         <MenuItem onClick={handleLogout}>
-          <Avatar /> Logout
+          <ListItemIcon>
+            <Logout fontSize="small" />
+          </ListItemIcon>
+          Logout
         </MenuItem>
       </Menu>
     </React.Fragment>
   );
-};
+}
 
-export default AccountMenu;

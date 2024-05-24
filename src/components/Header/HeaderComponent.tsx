@@ -14,7 +14,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import { useNavigate } from "react-router-dom";
 import { SessionContext } from "../../contexts/SessionContext";
 import { useContext } from "react";
-import AccountMenu from "../../../e-commerce-react/src/components/AccountMenu/AccountMenu";
+import AccountMenu from "../AccountMenu/AccountMenu";
 
 const HeaderComponent: React.FC = () => {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);

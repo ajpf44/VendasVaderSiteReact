@@ -43,8 +43,8 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
       sx={{
         padding: "2rem",
         height: "fit-content",
-        minWidth: "10rem",
-        maxWidth: "10rem",
+        minWidth: "15rem",
+        maxWidth: "15rem",
       }}
     >
       <div className="custom-input">

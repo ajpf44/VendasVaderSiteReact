@@ -14,89 +14,25 @@ import LoginIcon from "@mui/icons-material/Login";
 import { useNavigate } from "react-router-dom";
 import { SessionContext } from "../../contexts/SessionContext";
 import { useContext } from "react";
+import AccountMenu from "../../../e-commerce-react/src/components/AccountMenu/AccountMenu";
 
-export default function HeaderComponent() {
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
-    React.useState<null | HTMLElement>(null);
-
-  const isMenuOpen = Boolean(anchorEl);
+const HeaderComponent: React.FC = () => {
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const { token } = useContext(SessionContext);
-  const { logout } = useContext(SessionContext);
-
-  const HandlelogoutIcon = () => {
-    return logout();
-  };
-
-  const renderIconButton = () => {
-    return token ? (
-      <IconButton
-        size="large"
-        aria-label=""
-        color="inherit"
-        onClick={HandlelogoutIcon}
-      >
-        <Badge color="error">
-          <AccountCircle
-            color="primary"
-          />
-        </Badge>
-      </IconButton>
-    ) : (
-      <IconButton
-        size="large"
-        aria-label=""
-        color="inherit"
-        onClick={handleLoginIconClick}
-      >
-        <Badge color="error">
-          <LoginIcon
-            color="primary"
-          />
-        </Badge>
-      </IconButton>
-    );
-  };
-
   const navigate = useNavigate();
 
   const handleLoginIconClick = () => {
     navigate("/Login");
   };
+
   const handleCartIconClick = () => {
     navigate("/Cart");
   };
+
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-    handleMobileMenuClose();
-  };
-
-  const menuId = "primary-search-account-menu";
-  const renderMenu = (
-    <Menu
-      anchorEl={anchorEl}
-      anchorOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      id={menuId}
-      keepMounted
-      transformOrigin={{
-        vertical: "top",
-        horizontal: "right",
-      }}
-      open={isMenuOpen}
-      onClose={handleMenuClose}
-    >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-    </Menu>
-  );
 
   const mobileMenuId = "primary-search-account-menu-mobile";
   const renderMobileMenu = (
@@ -115,12 +51,20 @@ export default function HeaderComponent() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>{renderIconButton()}</MenuItem>
       <MenuItem>
-        <IconButton>
-          <LocalGroceryStoreIcon 
-            color="primary"
-          />
+        {token ? (
+          <AccountMenu />
+        ) : (
+          <IconButton size="large" aria-label="" color="inherit" onClick={handleLoginIconClick}>
+            <Badge color="error">
+              <LoginIcon color="primary" />
+            </Badge>
+          </IconButton>
+        )}
+      </MenuItem>
+      <MenuItem>
+        <IconButton onClick={handleCartIconClick}>
+          <LocalGroceryStoreIcon color="primary" />
         </IconButton>
       </MenuItem>
     </Menu>
@@ -128,10 +72,7 @@ export default function HeaderComponent() {
 
   return (
     <Box sx={{}}>
-      <AppBar
-        position="static"
-        sx={{ backgroundColor: "black", height: "5rem" }}
-      >
+      <AppBar position="static" sx={{ backgroundColor: "black", height: "5rem" }}>
         <Toolbar>
           <IconButton
             size="large"
@@ -139,13 +80,9 @@ export default function HeaderComponent() {
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
-            onClick={()=> navigate("/")}
+            onClick={() => navigate("/")}
           >
-            <img
-              className="officialLogo"
-              src={logo}
-              alt="Logo do Vendas Vader"
-            ></img>
+            <img className="officialLogo" src={logo} alt="Logo do Vendas Vader"></img>
           </IconButton>
 
           <Box sx={{ flexGrow: 1 }} />
@@ -154,26 +91,33 @@ export default function HeaderComponent() {
               Produtos
             </a>
 
-            {renderIconButton()}
+            {token ? (
+              <AccountMenu />
+            ) : (
+              <IconButton size="large" aria-label="" color="inherit" onClick={handleLoginIconClick}>
+                <Badge color="error">
+                  <LoginIcon color="primary" />
+                </Badge>
+              </IconButton>
+            )}
 
             <IconButton
               size="large"
               edge="end"
               aria-label="account of current user"
-              aria-controls={menuId}
+              aria-controls="primary-search-account-menu"
               aria-haspopup="true"
               onClick={handleCartIconClick}
               color="inherit"
             >
-              <LocalGroceryStoreIcon 
-                color="primary"
-              />
+              <LocalGroceryStoreIcon color="primary" />
             </IconButton>
           </Box>
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
-      {renderMenu}
     </Box>
   );
-}
+};
+
+export default HeaderComponent;

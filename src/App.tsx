@@ -15,6 +15,7 @@ import { AppThemeProvider } from "./contexts/ThemeContext";
 import "./App.css";
 import SessionContextProvider from "./contexts/SessionContext";
 import NotFound from "./components/NotFound";
+import PrivacyPolicy from "./pages/Privacy/PrivacyPolicy";
 
 const App: React.FC = () => {
   return (
@@ -31,6 +32,7 @@ const App: React.FC = () => {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signUp" element={<SignUpPage />} />
               <Route path="/members" element={<MembersPage />} />
+              <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
               <Route path="*" element={<NotFound/>} />
             </Routes>
           <FooterComponent />

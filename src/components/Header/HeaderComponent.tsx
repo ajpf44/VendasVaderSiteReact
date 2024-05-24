@@ -12,12 +12,10 @@ import logo from "../../assets/Vendas_Vader-removebg-preview.png"
 import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 import LoginIcon from '@mui/icons-material/Login';
 import { useNavigate} from 'react-router-dom';
-import { AuthContext } from "../../contexts/AuthContext";
+import { SessionContext } from "../../contexts/SessionContext";
 import { useContext } from "react";
 
 
-  
-  
   export default function HeaderComponent() {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
@@ -25,8 +23,8 @@ import { useContext } from "react";
   
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-    const {token} = useContext(AuthContext);
-    const {logout} = useContext(AuthContext);
+    const {token} = useContext(SessionContext);
+    const {logout} = useContext(SessionContext);
 
 
  
@@ -129,8 +127,9 @@ const renderIconButton = () => {
     );
   
     return (
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" sx={{ backgroundColor: 'black'}}>
+      <Box sx={{ flexGrow:1 }}>
+      
+        <AppBar position="static" sx={{ backgroundColor: 'black', height:'5rem'}}>
           <Toolbar>
             <IconButton
               size="large"

@@ -1,22 +1,12 @@
 import React from "react";
 import { ProductType } from "../../../types/ProductsTypes";
 import ProductCardMUI from "./ProductCardMUI";
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
 
 interface ProductListProps {
-  products: ProductType[];
-  loading: boolean;
+  products: ProductType[]
 }
 
-const ProductList: React.FC<ProductListProps> = ({ products, loading }) => {
-  if (loading) {
-    return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-        <CircularProgress size={80} />
-      </Box>
-    );
-  }
+const ProductList: React.FC<ProductListProps> = ({ products }) => {
 
   return (
     <div className="listContainer">

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { CartContext } from "../../contexts/CartContext";
 
 const CartPage: React.FC = () => {
@@ -14,6 +14,7 @@ const CartPage: React.FC = () => {
     updateQuantity,
     clearCart,
     getTotalPrice,
+    setCartTestItems,
   } = cartContext;
 
   const handleQuantityChange = (id: number, quantity: number) => {
@@ -21,6 +22,11 @@ const CartPage: React.FC = () => {
       updateQuantity(id, quantity);
     }
   };
+
+  //PEGA OS DADOS DE PRODUTOS E COLOCA NO ARRAY DE CART SÓ PARA TESTAR O LAYOUT
+  useEffect(()=>{
+    setCartTestItems();
+  },[])
 
   return (
     <div>
@@ -35,7 +41,9 @@ const CartPage: React.FC = () => {
               <p>Preço: R${item.price}</p>
               <div>
                 <button
-                  onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
+                  onClick={() =>
+                    handleQuantityChange(item.id, item.quantity - 1)
+                  }
                   disabled={item.quantity <= 1}
                 >
                   -
@@ -50,7 +58,9 @@ const CartPage: React.FC = () => {
                   aria-label={`Quantidade de ${item.title}`}
                 />
                 <button
-                  onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
+                  onClick={() =>
+                    handleQuantityChange(item.id, item.quantity + 1)
+                  }
                 >
                   +
                 </button>

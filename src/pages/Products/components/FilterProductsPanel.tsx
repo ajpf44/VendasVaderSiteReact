@@ -19,7 +19,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
   minPrice,
 }) => {
   return (
-    <Card className="filterPanelContainer" sx={{padding: "2rem", height: "fit-content", minWidth: "10rem"}}>
+    <Card className="filterPanelContainer" sx={{padding: "2rem", height: "fit-content", minWidth: "10rem", maxWidth: '10rem'}}>
       <div className="custom-input">
         <div className="priceFilterContainer">
           <h3>Preços</h3>

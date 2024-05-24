@@ -10,6 +10,7 @@ import {
 } from "../../utils/filterProducts";
 import SearchInput from "../../components/SearchInput";
 import { Box, Container } from "@mui/material";
+import LoadingIndiciator from "../../components/LoadingIndicator";
 
 const Products: React.FC = () => {
   const [products, setProducts] = useState<ProductType[]>([]);
@@ -47,6 +48,12 @@ const Products: React.FC = () => {
     [products, searchTerm, minPrice, maxPrice]
   );
 
+  if (loading) {
+    return (
+      <LoadingIndiciator size={100} />
+    );
+  }
+
   return (
     <>
       <div style={{ position: "absolute", top: -20, left: "50%", transform: "translateX(-50%)" }}>
@@ -72,7 +79,7 @@ const Products: React.FC = () => {
           maxPrice={maxPrice}
         />
         <Box className="mainContainer">
-          <ProductList products={productsToShow} loading={loading} />
+          <ProductList products={productsToShow} />
         </Box>
       </div>
     </Container>

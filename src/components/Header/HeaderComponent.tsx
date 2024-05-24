@@ -127,7 +127,7 @@ export default function HeaderComponent() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{}}>
       <AppBar
         position="static"
         sx={{ backgroundColor: "black", height: "5rem" }}

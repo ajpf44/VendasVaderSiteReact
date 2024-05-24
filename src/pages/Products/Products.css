@@ -37,10 +37,6 @@ main {
   align-items: center;
 }
 
-.filterPanelContainer {
-  
-}
-
 .priceFilterContainer {
   display: flex;
   flex-direction: column;
@@ -66,8 +62,7 @@ main {
 }
 .productDetailInfoContainer {
   width: 40rem;
-  height: 30rem;
-
+  
   padding: 0 2rem;
 
   display: flex;

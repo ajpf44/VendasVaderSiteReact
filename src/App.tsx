@@ -12,19 +12,20 @@ import { CartProvider } from "./contexts/CartContext";
 import HeaderComponent from "./components/Header/HeaderComponent";
 import FooterComponent from "./components/Footer/FooterComponent";
 
+import { AppThemeProvider } from "./contexts/ThemeContext";
 import "./App.css";
 import SessionContextProvider from "./contexts/SessionContext";
 import NotFound from "./components/NotFound";
 
 const App: React.FC = () => {
   return (
+    <AppThemeProvider>
     <CartProvider>
       <SessionContextProvider>
         <Router>
           <HeaderComponent />
-          <div style={{ minHeight: "89.2vh" }}>
             <Routes>
-              <Route path="/" element={<Products />} />
+              <Route path="/" element={<Home />} />
               <Route path="/products" element={<Products />} />
               <Route path="/product/:id" element={<ProductDetail />} />
               <Route path="/cart" element={<CartPage />} />
@@ -33,11 +34,11 @@ const App: React.FC = () => {
               <Route path="/members" element={<MembersPage />} />
               <Route path="*" element={<NotFound/>} />
             </Routes>
-          </div>
           <FooterComponent />
         </Router>
       </SessionContextProvider>
     </CartProvider>
+    </AppThemeProvider>
   );
 };
 

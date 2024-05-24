@@ -1,8 +1,6 @@
 .geralContainer {
   min-height: 89.2vh;
-
-  background-color: white;
-  background-color: rgba(211, 211, 211, 0.509);
+   
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,15 +38,7 @@ main {
 }
 
 .filterPanelContainer {
-  background-color: white;
-
-  width: 15rem;
-  padding: 2rem;
-
-  border-radius: 1rem;
-  box-sizing: border-box;
-
-  height: fit-content;
+  
 }
 
 .priceFilterContainer {

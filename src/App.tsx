@@ -3,11 +3,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Products from "./pages/Products/Products";
 import ProductDetail from "./pages/Products/ProductDetail";
-import CartPage from "./pages/Cart/Cart";
+import CartPage from "./pages/Cart/CartPage";
 import LoginPage from "./pages/SignIn/SignIn";
 import MembersPage from "./pages/Members/Members";
 import SignUpPage from "./pages/SignUp/SignUp";
-
 import { CartProvider } from "./contexts/CartContext";
 import HeaderComponent from "./components/Header/HeaderComponent";
 import FooterComponent from "./components/Footer/FooterComponent";

@@ -23,7 +23,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           i.id === item.id ? { ...i, quantity: i.quantity + item.quantity } : i
         );
       } else {
-        return [...prevItems, item];
+        return [...prevItems, {...item, quantity: 1}]; //Adicionando quantidade inicial de um produto
       }
     });
   };

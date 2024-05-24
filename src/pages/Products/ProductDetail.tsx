@@ -4,11 +4,7 @@ import { useParams } from "react-router-dom";
 import CartShopButton from "../../components/Button/CartShopButton";
 import { getProductById } from "../../services/products";
 import { Box, Button, Card, CardMedia, Container } from "@mui/material";
-import {
-  ArrowCircleLeft,
-  ArrowCircleRight,
-  WidthFull,
-} from "@mui/icons-material";
+import { ArrowCircleLeft, ArrowCircleRight } from "@mui/icons-material";
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<string>();
@@ -55,12 +51,12 @@ const ProductDetail: React.FC = () => {
         minHeight: "85.5vh",
       }}
     >
-      <Card sx={{ display: "flex", padding: "5rem", alignItems: "stretch" }}>
+      <Card sx={{ display: "flex", padding: "5rem", flexWrap: "wrap" }}>
         <Box>
           <Box sx={{ display: "flex", alignItems: "center", height: "25rem" }}>
             <Button
               sx={{ borderRadius: "100%" }}
-              onClick={() => handleSwitchImage(1)}
+              onClick={() => handleSwitchImage(-1)}
               color="info"
             >
               <ArrowCircleLeft sx={{ fontSize: 40 }} />
@@ -69,7 +65,7 @@ const ProductDetail: React.FC = () => {
               component="img"
               image={`${product.images[imageIndex]}`}
               alt={`imagem do ${product.title}`}
-              sx={{ height: "25rem", width: "30rem" }}
+              sx={{ height: "25rem", maxWidth: "30rem", width: "100%" }}
             />
             <Button
               sx={{ borderRadius: "100%" }}
@@ -98,8 +94,8 @@ const ProductDetail: React.FC = () => {
                     minWidth: 0,
                     borderRadius: "1rem",
                   }}
-                  variant='contained'
-                  color={(index==imageIndex?"secondary": "info")}
+                  variant="contained"
+                  color={index == imageIndex ? "secondary" : "info"}
                   onClick={() => setImageIndex(index)}
                 ></Button>
               );
@@ -119,8 +115,16 @@ const ProductDetail: React.FC = () => {
               paddingBottom: "1rem",
             }}
           >
-            <h2 style={{fontSize: "2rem", fontFamily: "monospace", fontWeight: "bold"}}>{product.title}</h2>
-            <p style={{fontStyle: "italic"}}>{product.brand}</p>
+            <h2
+              style={{
+                fontSize: "2rem",
+                fontFamily: "monospace",
+                fontWeight: "bold",
+              }}
+            >
+              {product.title}
+            </h2>
+            <p style={{ fontStyle: "italic" }}>{product.brand}</p>
           </Box>
           <p className="infoPriceText">
             <span className="spanDiscount">

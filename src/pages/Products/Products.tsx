@@ -48,12 +48,15 @@ const Products: React.FC = () => {
       setCheckboxesStatus(categoriesStatus);
     };
 
-    foo()
+    foo();
   }, []);
 
   const handleFilter = useCallback(
-    (term = "") => {
-      const searchedProducts = filterProductsByTerm(products, term);
+    (term?: string) => {
+      const searchedProducts = filterProductsByTerm(
+        products,
+        term ?? searchTerm
+      );
       let searchedAndFilteredProducts = filterProductsByPrice(
         searchedProducts,
         minPrice,
@@ -74,7 +77,7 @@ const Products: React.FC = () => {
   const handleCheckboxChange = (category: string) => {
     setCheckboxesStatus((prevStatus: Record<string, boolean>) => ({
       ...prevStatus,
-      [category]: !prevStatus[category]
+      [category]: !prevStatus[category],
     }));
   };
 
@@ -98,7 +101,11 @@ const Products: React.FC = () => {
             setSearchTerm(evt.target.value);
             handleFilter(evt.target.value);
           }}
-          onKeyDown={() => {}}
+          onKeyDown={(evt) => {
+            if (evt.code == "Enter") {
+              handleFilter(searchTerm);
+            }
+          }}
         />
       </div>
       <Container className="geralContainer" maxWidth="xl">

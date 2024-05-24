@@ -17,7 +17,7 @@ interface FilterPanelProps {
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   setMinPrice: React.Dispatch<React.SetStateAction<string>>;
   setMaxPrice: React.Dispatch<React.SetStateAction<string>>;
-  handleFilter: (term: string) => void;
+  handleFilter: (term?: string) => void;
   minPrice: string;
   maxPrice: string;
   prodCategories: Set<string>;
@@ -106,7 +106,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
             </FormGroup>
           </FormControl>
         </Box>
-        <ButtonEmpty onClick={() => handleFilter("")}>Filtrar</ButtonEmpty>
+        <ButtonEmpty onClick={() => handleFilter()}>Filtrar</ButtonEmpty>
       </div>
     </Card>
   );

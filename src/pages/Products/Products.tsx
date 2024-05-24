@@ -20,6 +20,7 @@ const Products: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [minPrice, setMinPrice] = useState<string>("");
   const [maxPrice, setMaxPrice] = useState<string>("");
+  const [checkboxesStatus, setCheckboxesStatus] = useState<any>({})
 
   useEffect(() => {
     const setProductsFromDB = async () => {
@@ -77,6 +78,9 @@ const Products: React.FC = () => {
           setMaxPrice={setMaxPrice}
           minPrice={minPrice}
           maxPrice={maxPrice}
+          checkboxesStatus={checkboxesStatus}
+          setCheckboxesStatus={setCheckboxesStatus}
+          prodCategories={new Set(products.map((product) => product.category))}
         />
         <Box className="mainContainer">
           <ProductList products={productsToShow} />

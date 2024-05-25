@@ -1,6 +1,7 @@
+import React from 'react';
 import './PrivacyPolicy.css';
 
-const PrivacyPolicy = () => {
+const PrivacyPolicy: React.FC = () => {
   return (
     <div className="container">
       <h1>Política de Privacidade</h1>

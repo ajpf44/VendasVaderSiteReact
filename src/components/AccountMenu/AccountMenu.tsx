@@ -13,10 +13,12 @@ import Logout from "@mui/icons-material/Logout";
 import { SessionContext } from "../../contexts/SessionContext";
 import { useContext } from "react";
 import CustomizedSwitches from "../Button/ButtonSwitch";
+import { useNavigate } from "react-router-dom";
 
 export default function AccountMenu() {
   const { logout } = useContext(SessionContext);
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const navigate = useNavigate();
+  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
   const open = Boolean(anchorEl);
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -30,6 +32,11 @@ export default function AccountMenu() {
   const handleLogout = () => {
     handleClose();
     logout();
+  };
+
+  const handleAboutUs = () => {
+    handleClose();
+    navigate("/members"); // Redireciona para a página "Sobre Nós"
   };
 
   return (
@@ -81,25 +88,29 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem onClick={handleClose}>
+        {/* Corrija o Link para a rota do perfil */}
+        {/* <MenuItem component={Link} to="/profile">
           <Avatar /> Profile
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Avatar /> My account
+        </MenuItem> */}
+        <MenuItem onClick={handleAboutUs}>
+          <ListItemIcon>
+            <PersonAdd fontSize="small" />
+          </ListItemIcon>
+          Developers
         </MenuItem>
         <Divider />
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <PersonAdd fontSize="small" />
           </ListItemIcon>
-          Add another account
+          Theme
         </MenuItem>
         
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
-          Settings
+          Help
         </MenuItem>
         <MenuItem>
         <CustomizedSwitches />

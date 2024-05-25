@@ -8,7 +8,7 @@ const FooterComponent = () => {
   
     return ( 
         <footer className="footer">
-  	 <div className="container">
+  	 <div className="containerFooter">
   	 	<div className="row">
   	 		<div className="footer-col">
   	 			<h4>Nosso Time</h4>

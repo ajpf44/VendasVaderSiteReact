@@ -1,0 +1,162 @@
+body {
+	background-color: white;
+  }
+  
+  .pageContainer {
+	width: 100%;
+	text-align: center;
+	
+  }
+  
+  .headerText {
+	margin-top: 20px;
+	margin-bottom: 5px;
+  }
+  
+  .headerText h1 {
+	font-size: 2em;
+	margin-bottom: 10px;
+  }
+  
+  .headerText p {
+	font-size: 1.2em;
+	color: #666;
+  }
+  
+  .containerMembers {
+	padding: 40px 20px 20px 20px;
+	width: 99%;
+	margin: 0 auto;
+	flex-wrap: wrap;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	justify-items: center;
+  }
+  
+  .card_item {
+	padding: 15px 30px;
+	width: 24%;
+	text-align: center;
+  }
+  
+  .containerMembers .card_item:hover {
+	transform: scale(1.02);
+	transition: transform 0.3s;
+	cursor: pointer;
+  }
+  
+  .containerMembers .card_inner {
+	background: rgba(253, 253, 253, 0.808);
+	border-radius: 10px;
+	background-color: purple;
+	padding: 35px 20px;
+	min-width: 225px;
+	min-height: 315px;
+	max-height: 370px;
+	width: 100%;
+	border: 3px solid black;
+  }
+  
+  .containerMembers .card_item img {
+	width: 120px;
+	height: 120px;
+	margin-bottom: 10px;
+	border-radius: 50%;
+	align-items: center;
+	transition: transform 0.2s;
+	border: 3px solid black;
+  }
+  
+  .containerMembers .card_item .userName {
+	color: #203150;
+	font-weight: 600;
+	font-size: 20px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+  }
+  
+  .containerMembers .card_item .userUrl {
+	font-size: 12px;
+	font-weight: 100;
+	margin: 5px 0 10px;
+	word-wrap: break-word;
+	color: #888b9e;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+  }
+  
+  .containerMembers .card_item .gitDetail {
+	font-size: 14px;
+	line-height: 24px;
+	color: #7b8ca0;
+	display: flex;
+	flex-direction: column;
+  }
+  
+  .detail-box {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  }
+  
+  .detail-box span {
+	margin: 2px;
+	padding: 2px 10px;
+	background-color: #f0ebfa;
+	border-radius: 50px;
+	font-size: 10px;
+	font-weight: 600;
+	color: #788697;
+  }
+  
+  .seeMore {
+	margin: 10px;
+	width: 100px;
+	height: 35px;
+	background: black;
+	color: #fff;
+	border: none;
+	border-radius: 10px;
+	font-weight: 600;
+	cursor: pointer;
+	margin-bottom: auto;
+  }
+  
+  .seeMore:hover {
+	background: #333;
+	transform: scale(1.02);
+  }
+  
+  @media screen and (max-width: 1024px) {
+	.containerMembers .card_item {
+	  width: 33%;
+	  display: block;
+	}
+  }
+  
+  @media screen and (max-width: 768px) {
+	.containerMembers .card_item {
+	  width: 50%;
+	}
+	.wrapper .header {
+	  font-size: 16px;
+	  height: 50px;
+	}
+  }
+  
+  @media screen and (max-width: 568px) {
+	.containerMembers .card_item {
+	  width: 80%;
+	  margin: auto;
+	}
+  }
+  
+  @media screen and (max-width: 320px) {
+	.containerMembers .card_item {
+	  width: 100%;
+	}
+  }
+  

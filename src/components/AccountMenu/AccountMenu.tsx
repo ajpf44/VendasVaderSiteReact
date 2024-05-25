@@ -1,5 +1,4 @@
 import * as React from "react";
-
 import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -14,6 +13,7 @@ import { SessionContext } from "../../contexts/SessionContext";
 import { useContext } from "react";
 import CustomizedSwitches from "../Button/ButtonSwitch";
 import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom'; 
 
 export default function AccountMenu() {
   const { logout } = useContext(SessionContext);
@@ -38,6 +38,11 @@ export default function AccountMenu() {
     handleClose();
     navigate("/members"); // Redireciona para a página "Sobre Nós"
   };
+  const handleAbout = () => {
+    handleClose();
+    navigate("/Privacy"); // Redireciona para a página "Sobre Nós"
+  };
+  
 
   return (
     <React.Fragment>
@@ -88,10 +93,10 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        {/* Corrija o Link para a rota do perfil */}
-        {/* <MenuItem component={Link} to="/profile">
+       
+        { <MenuItem component={Link} to="/profile"> 
           <Avatar /> Profile
-        </MenuItem> */}
+        </MenuItem> }
         <MenuItem onClick={handleAboutUs}>
           <ListItemIcon>
             <PersonAdd fontSize="small" />
@@ -99,18 +104,12 @@ export default function AccountMenu() {
           Developers
         </MenuItem>
         <Divider />
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <PersonAdd fontSize="small" />
-          </ListItemIcon>
-          Theme
-        </MenuItem>
         
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
-          Help
+          Privacy Policy
         </MenuItem>
         <MenuItem>
         <CustomizedSwitches />
@@ -121,7 +120,6 @@ export default function AccountMenu() {
           </ListItemIcon>
           Logout
         </MenuItem>
-     
       </Menu>
     </React.Fragment>
   );

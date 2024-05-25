@@ -88,9 +88,6 @@ const ProfilePage: React.FC = () => {
           margin="normal"
           variant="outlined"
         />
-        <Button type="submit" variant="contained" color="primary">
-          Save Changes
-        </Button>
       </form>
     </Box>
   );

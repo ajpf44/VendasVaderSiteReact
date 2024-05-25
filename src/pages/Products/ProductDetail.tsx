@@ -14,13 +14,18 @@ const ProductDetail: React.FC = () => {
   const [imageIndex, setImageIndex] = useState(0);
 
   const handleSwitchImage = (switchFactor: number) => {
-    setImageIndex((imageIndex) => {
-      const newIndex = imageIndex + switchFactor;
+    setImageIndex(
+      (imageIndex) =>
+        (imageIndex + switchFactor + product.images.length) %
+        product.images.length
+    );
+    // setImageIndex((imageIndex) => {
+    //   const newIndex = imageIndex + switchFactor;
 
-      if (newIndex < 0) return product.images.length - 1;
-      if (newIndex > product.images.length - 1) return 0;
-      return newIndex;
-    });
+    //   if (newIndex < 0) return product.images.length - 1;
+    //   if (newIndex > product.images.length - 1) return 0;
+    //   return newIndex;
+    // });
   };
 
   useEffect(() => {
@@ -37,7 +42,7 @@ const ProductDetail: React.FC = () => {
     fetchProduct();
   }, [id]);
 
-  if (loading) return <LoadingIndiciator size={100}/>;
+  if (loading) return <LoadingIndiciator size={100} />;
 
   return (
     <Container
@@ -66,7 +71,7 @@ const ProductDetail: React.FC = () => {
               component="img"
               image={`${product.images[imageIndex]}`}
               alt={`imagem do ${product.title}`}
-              sx={{ height: "25rem", maxWidth: "30rem", width: "100%" }}
+              sx={{ height: "25rem", width: "30rem" }}
             />
             <Button
               sx={{ borderRadius: "100%" }}

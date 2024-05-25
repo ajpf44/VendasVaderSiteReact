@@ -1,0 +1,3 @@
+componentes, tudo for utilizado em mais de uma página ou elementos de page que forem muito grandes
+
+DETALHE: SE O COMPONENTE FOR UTILIZADO SOMENTE EM UMA PÁGINA, CRIAR COMPONENTE NA PRÓPRIA PASTA DA PÁGINA

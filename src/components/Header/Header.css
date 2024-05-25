@@ -1,0 +1,29 @@
+* {
+  font-family: "Times New Roman", Times, serif;
+}
+
+.ProductText {
+  font-size: 150%;
+  padding: 3%;
+  margin-top: 4%;
+  text-decoration-line: none;
+  color: white;
+}
+
+.inputSearch {
+  background-color: black;
+  border-radius: -2px;
+  align-items: center;
+  align-content: center;
+  margin-top: 10%;
+}
+
+input::placeholder {
+  color: white;
+  opacity: 100;
+}
+
+.officialLogo {
+  width: 9rem;
+}
+

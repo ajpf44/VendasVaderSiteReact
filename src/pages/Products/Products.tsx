@@ -1,3 +1,6 @@
+
+
+
 import React, { useEffect, useState, useCallback } from "react";
 import ProductList from "./components/ProductList";
 import { getAllProducts } from "../../services/products";
@@ -17,6 +20,7 @@ const Products: React.FC = () => {
   const [products, setProducts] = useState<ProductType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [productsToShow, setProductsToShow] = useState<ProductType[]>([]);
+  const [quantities, setQuantities] = useState<{ [key: number]: number }>({});
 
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [minPrice, setMinPrice] = useState<string>("");
@@ -81,6 +85,20 @@ const Products: React.FC = () => {
     }));
   };
 
+  const handleIncreaseQuantity = (productId: number) => {
+    setQuantities((prevQuantities) => ({
+      ...prevQuantities,
+      [productId]: (prevQuantities[productId] || 0) + 1,
+    }));
+  };
+
+  const handleDecreaseQuantity = (productId: number) => {
+    setQuantities((prevQuantities) => ({
+      ...prevQuantities,
+      [productId]: prevQuantities[productId] > 0 ? prevQuantities[productId] - 1 : 0,
+    }));
+  };
+
   if (loading) {
     return <LoadingIndiciator size={100} />;
   }
@@ -126,7 +144,12 @@ const Products: React.FC = () => {
             }
           />
           <Box className="mainContainer">
-            <ProductList products={productsToShow} />
+            <ProductList 
+              products={productsToShow} 
+              quantities={quantities}
+              onIncreaseQuantity={handleIncreaseQuantity}
+              onDecreaseQuantity={handleDecreaseQuantity}
+            />
           </Box>
         </div>
       </Container>

@@ -5,6 +5,7 @@ import CartShopButton from "../../components/Button/CartShopButton";
 import { getProductById } from "../../services/products";
 import { Box, Button, Card, CardMedia, Container } from "@mui/material";
 import { ArrowCircleLeft, ArrowCircleRight } from "@mui/icons-material";
+import LoadingIndiciator from "../../components/LoadingIndicator";
 
 const ProductDetail: React.FC = () => {
   const { id } = useParams<string>();
@@ -36,7 +37,7 @@ const ProductDetail: React.FC = () => {
     fetchProduct();
   }, [id]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <LoadingIndiciator size={100}/>;
 
   return (
     <Container

@@ -57,10 +57,11 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 
 export default function CustomizedSwitches() {
   const Themectx = useContext (ThemeContext)
+
   return (
     <FormGroup>
       <FormControlLabel
-        control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
+        control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked={Themectx.themeName=="dark"?true:false} />}
         label="Tema"
         onClick={Themectx.toggleTheme}
       />

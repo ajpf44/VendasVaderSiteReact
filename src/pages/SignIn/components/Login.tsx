@@ -33,8 +33,6 @@ function Copyright(props: any) {
   );
 }
 
-const defaultTheme = createTheme();
-
 export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = React.useState<string>("");
@@ -65,7 +63,7 @@ export default function Login() {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+
       <Container component="main" maxWidth="xs">
         <Box
           sx={{
@@ -155,6 +153,6 @@ export default function Login() {
         </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
       </Container>
-    </ThemeProvider>
+    
   );
 }

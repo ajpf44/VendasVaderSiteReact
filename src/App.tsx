@@ -15,6 +15,7 @@ import { AppThemeProvider } from "./contexts/ThemeContext";
 import SessionContextProvider from "./contexts/SessionContext";
 import NotFound from "./components/NotFound";
 import PrivacyPolicy from "./pages/Privacy/PrivacyPolicy";
+import { CssBaseline } from "@mui/material";
 
 const App = () => {
   return (
@@ -23,8 +24,10 @@ const App = () => {
         <SessionContextProvider>
           <Router>
             <HeaderComponent />
+            <CssBaseline />
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<Products />} />
+              <Route path="/home" element={<Home />} />
               <Route path="/products" element={<Products />} />
               <Route path="/product/:id" element={<ProductDetail />} />
               <Route path="/cart" element={<CartPage />} />

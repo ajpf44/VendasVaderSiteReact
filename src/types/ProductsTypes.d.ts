@@ -2,7 +2,7 @@ type ProductType = {
   category: string;
   description: string;
   discountPercentage: string;
-  id: string;
+  id: number;
   images: string[];
   price: string;
   rating: string;

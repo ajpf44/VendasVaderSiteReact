@@ -1,0 +1,25 @@
+.container {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+   
+    color: #333;
+  }
+  
+  .section {
+    margin-bottom: 20px;
+  }
+  
+  .section h2 {
+    color: purple
+  }
+  
+  ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  
+  ul li {
+    margin-bottom: 10px;
+  }
+  

@@ -9,7 +9,11 @@ export interface SessionContextType {
   user: UserType | undefined;
   isAuthenticated: boolean;
   signin: (email: string, password: string) => Promise<string | undefined>;
-  signup: (email: string, password: string, name: string) => Promise<string | undefined>;
+  signup: (
+    email: string,
+    password: string,
+    name: string
+  ) => Promise<string | undefined>;
   logout: () => void;
 }
 
@@ -27,9 +31,12 @@ interface SessionContextProviderProps {
   children: ReactNode;
 }
 
-const SessionContextProvider: FC<SessionContextProviderProps> = ({ children }) => {
+const SessionContextProvider: FC<SessionContextProviderProps> = ({
+  children,
+}) => {
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<UserType>();
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>();
 
   const signin = async (
     email: string,
@@ -37,8 +44,8 @@ const SessionContextProvider: FC<SessionContextProviderProps> = ({ children }) =
   ): Promise<string | undefined> => {
     const userToken = await login(email, password);
 
-    
     if (userToken) {
+      setIsAuthenticated(true);
       setToken(userToken);
 
       const firebaseUser = await getUserByEmail(email);
@@ -55,15 +62,15 @@ const SessionContextProvider: FC<SessionContextProviderProps> = ({ children }) =
     const userToken = await createUser(email, password);
     if (userToken) {
       setToken(userToken);
-      
+
       const newUser: UserType = {
         name: name,
         email: email,
         adress: "",
-        cart: undefined  
-      }
-      
-      createUserAtFirebase(newUser)
+        cart: undefined,
+      };
+
+      createUserAtFirebase(newUser);
       setUser(newUser);
     }
     return userToken;
@@ -71,6 +78,7 @@ const SessionContextProvider: FC<SessionContextProviderProps> = ({ children }) =
 
   const logout = (): void => {
     setToken(null);
+    setIsAuthenticated(false);
   };
 
   const value: SessionContextType = {
@@ -82,7 +90,9 @@ const SessionContextProvider: FC<SessionContextProviderProps> = ({ children }) =
     logout: logout,
   };
 
-  return <SessionContext.Provider value={value}>{children}</SessionContext.Provider>;
+  return (
+    <SessionContext.Provider value={value}>{children}</SessionContext.Provider>
+  );
 };
 
 export default SessionContextProvider;

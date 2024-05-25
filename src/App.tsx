@@ -7,36 +7,43 @@ import CartPage from "./pages/Cart/CartPage";
 import LoginPage from "./pages/SignIn/SignIn";
 import MembersPage from "./pages/Members/Members";
 import SignUpPage from "./pages/SignUp/SignUp";
+import Profile from "./pages/ProfilePage/Profile";
 import { CartProvider } from "./contexts/CartContext";
 import HeaderComponent from "./components/Header/HeaderComponent";
 import FooterComponent from "./components/Footer/FooterComponent";
-
 import { AppThemeProvider } from "./contexts/ThemeContext";
-import "./App.css";
 import SessionContextProvider from "./contexts/SessionContext";
 import NotFound from "./components/NotFound";
+import PrivacyPolicy from "./pages/Privacy/PrivacyPolicy";
+import { CssBaseline } from "@mui/material";
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <AppThemeProvider>
-    <CartProvider>
-      <SessionContextProvider>
-        <Router>
-          <HeaderComponent />
+      <CartProvider>
+        <SessionContextProvider>
+          <Router>
+            <HeaderComponent />
+            <div style={{minHeight: "70vh"}}>
+            <CssBaseline />
             <Routes>
-              <Route path="/" element={<Home />} />
+              <Route path="/" element={<Products />} />
+              <Route path="/home" element={<Home />} />
               <Route path="/products" element={<Products />} />
               <Route path="/product/:id" element={<ProductDetail />} />
               <Route path="/cart" element={<CartPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signUp" element={<SignUpPage />} />
               <Route path="/members" element={<MembersPage />} />
-              <Route path="*" element={<NotFound/>} />
+              <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
-          <FooterComponent />
-        </Router>
-      </SessionContextProvider>
-    </CartProvider>
+          </div>
+            <FooterComponent />
+          </Router>
+        </SessionContextProvider>
+      </CartProvider>
     </AppThemeProvider>
   );
 };

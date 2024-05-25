@@ -1,4 +1,15 @@
-import { Card, Input, InputAdornment, InputLabel } from "@mui/material";
+import {
+  Box,
+  Card,
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  FormGroup,
+  FormLabel,
+  Input,
+  InputAdornment,
+  InputLabel,
+} from "@mui/material";
 import ButtonEmpty from "../../../components/Button/ButtonEmpty";
 
 interface FilterPanelProps {
@@ -6,9 +17,13 @@ interface FilterPanelProps {
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
   setMinPrice: React.Dispatch<React.SetStateAction<string>>;
   setMaxPrice: React.Dispatch<React.SetStateAction<string>>;
-  handleFilter: (term: string) => void;
+  handleFilter: (term?: string) => void;
   minPrice: string;
   maxPrice: string;
+  prodCategories: Set<string>;
+  checkboxesStatus: any;
+  setCheckboxesStatus: React.Dispatch<React.SetStateAction<{}>>;
+  handleCheckboxChange: (category: string) => void;
 }
 
 const FilterPanel: React.FC<FilterPanelProps> = ({
@@ -17,14 +32,26 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
   handleFilter,
   maxPrice,
   minPrice,
+  prodCategories,
+  checkboxesStatus,
+  handleCheckboxChange
 }) => {
+
   return (
-    <Card className="filterPanelContainer" sx={{padding: "2rem", height: "fit-content", minWidth: "10rem"}}>
+    <Card
+      className="filterPanelContainer"
+      sx={{
+        padding: "2rem",
+        height: "fit-content",
+        minWidth: "15rem",
+        maxWidth: "15rem",
+      }}
+    >
       <div className="custom-input">
         <div className="priceFilterContainer">
           <h3>Preços</h3>
 
-          <InputLabel sx={{display: 'flex', gap: '2rem'}}>
+          <InputLabel sx={{ display: "flex", gap: "2rem" }}>
             <span>Min:</span>
             <Input
               id="outlined-textarea"
@@ -39,7 +66,7 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
             />
           </InputLabel>
 
-          <InputLabel sx={{display: 'flex', gap: '2rem'}}>
+          <InputLabel sx={{ display: "flex", gap: "2rem" }}>
             <span>Max:</span>
             <Input
               id="outlined-textarea"
@@ -53,9 +80,33 @@ const FilterPanel: React.FC<FilterPanelProps> = ({
               }
             />
           </InputLabel>
-
-          <ButtonEmpty onClick={() => handleFilter("")}>Filtrar</ButtonEmpty>
         </div>
+
+        {/* FILTRO POR CATEGORIAS */}
+        <Box sx={{ marginBlock: "1rem" }}>
+          <FormControl sx={{}} component="fieldset" variant="standard">
+            <FormLabel component="legend">Categorias</FormLabel>
+            <FormGroup>
+              {[...prodCategories].map((category, index) => {
+                return (
+                  <FormControlLabel
+                    key={index}
+                    control={
+                      <Checkbox
+                        name={category}
+                        checked={checkboxesStatus[category]}
+                        onChange={() => handleCheckboxChange(category)}
+                        color="secondary"
+                      />
+                    }
+                    label={category}
+                  />
+                );
+              })}
+            </FormGroup>
+          </FormControl>
+        </Box>
+        <ButtonEmpty onClick={() => handleFilter()}>Filtrar</ButtonEmpty>
       </div>
     </Card>
   );

@@ -27,3 +27,6 @@ const CartShopButton: React.FC<ButtonProps> = ({ onClick }) => {
 };
 
 export default CartShopButton;
+
+// COMENTEI O BOTÃO POIS CRIEI OUTRO BOTÃO E GOSTEI MAIS DELE :D
+// DEIXEI ESTE SALVO PARA FINS DE REUSO CASO O GRUPO PREFIRA SEGUIR COM ESTE. 

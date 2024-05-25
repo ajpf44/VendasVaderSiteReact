@@ -39,9 +39,8 @@ const Products: React.FC = () => {
     const getAndSetProducts = async () => {
       setLoading(true);
       const productsStoragedJson:string|null = sessionStorage.getItem("products")
-
       let p:ProductType[];
-      if(productsStoragedJson==null){
+      if(productsStoragedJson==null || productsStoragedJson.length == 0 ){
         console.log("no products in storage");
         
         p = await fetchNewProducts();
@@ -49,8 +48,10 @@ const Products: React.FC = () => {
         console.log("products in storage");
         p = await JSON.parse(productsStoragedJson) as ProductType[];
       }
+
       setProducts(p);
       setProductsToShow(p);
+
       setLoading(false);
       setCategoriesStatus(p);
     };

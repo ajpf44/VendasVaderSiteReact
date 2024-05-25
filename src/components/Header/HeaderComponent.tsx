@@ -11,7 +11,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import logo from "../../assets/Vendas_Vader-removebg-preview.png";
 import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
 import LoginIcon from "@mui/icons-material/Login";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SessionContext } from "../../contexts/SessionContext";
 import { useContext } from "react";
 import AccountMenu from "../AccountMenu/AccountMenu";
@@ -87,9 +87,9 @@ const HeaderComponent: React.FC = () => {
 
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <a href="/Products" className="ProductText">
+            <Link to="/products" className="ProductText">
               Produtos
-            </a>
+            </Link>
 
             {token ? (
               <AccountMenu />

@@ -24,18 +24,30 @@ const Products: React.FC = () => {
   const [checkboxesStatus, setCheckboxesStatus] = useState<any>({});
 
   useEffect(() => {
-    const setProductsFromDB = async () => {
-      setLoading(true);
+    const fetchNewProducts = async () => {
+      
       const newProducts = await getAllProducts();
-      setLoading(false);
-
-      setProducts(newProducts);
-      setProductsToShow(newProducts);
+      sessionStorage.setItem("products", JSON.stringify(newProducts));
 
       return newProducts;
     };
-    const foo = async () => {
-      const p = await setProductsFromDB();
+    const setupCategoriesCheckboxesStatus = async () => {
+      setLoading(true);
+      const productsStoragedJson:string|null = sessionStorage.getItem("products")
+
+      let p:ProductType[];
+      if(productsStoragedJson==null){
+        console.log("no products in storage");
+        
+        p = await fetchNewProducts();
+      } else{
+        console.log("products in storage");
+        p = await JSON.parse(productsStoragedJson) as ProductType[];
+      }
+      setProducts(p);
+      setProductsToShow(p);
+      setLoading(false);
+
 
       const categoriesStatus = p
         .map((product) => product.category)
@@ -46,9 +58,10 @@ const Products: React.FC = () => {
         }, {} as Record<string, boolean>);
 
       setCheckboxesStatus(categoriesStatus);
+      
     };
 
-    foo();
+    setupCategoriesCheckboxesStatus();
   }, []);
 
   const handleFilter = useCallback(
@@ -63,7 +76,6 @@ const Products: React.FC = () => {
         maxPrice
       );
 
-      console.log(checkboxesStatus);
       searchedAndFilteredProducts = filterProductsByCategory(
         searchedAndFilteredProducts,
         checkboxesStatus

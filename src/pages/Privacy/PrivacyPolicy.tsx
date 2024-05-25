@@ -1,10 +1,8 @@
+import React from 'react';
 import './PrivacyPolicy.css';
 
-const PrivacyPolicy = () => {
-
-
-
-    return (
+const PrivacyPolicy: React.FC = () => {
+  return (
     <div className="container">
       <h1>Política de Privacidade</h1>
 
@@ -18,7 +16,14 @@ const PrivacyPolicy = () => {
       </div>
 
       <div className="section">
-        <h2>2. Informações que Coletamos</h2>
+        <h2>2. Formas de Pagamento</h2>
+        <p>
+          Aceitamos os seguintes métodos de pagamento: cartão de crédito, cartão de débito, PayPal, transferência bancária, entre outros. Todas as transações financeiras são processadas com segurança e criptografadas.
+        </p>
+      </div>
+
+      <div className="section">
+        <h2>3. Informações que Coletamos</h2>
         <p>
           Coletamos diferentes tipos de informações para fornecer e melhorar nossos
           serviços, incluindo:
@@ -31,7 +36,7 @@ const PrivacyPolicy = () => {
       </div>
 
       <div className="section">
-        <h2>3. Uso das Informações</h2>
+        <h2>4. Uso das Informações</h2>
         <p>Usamos suas informações para os seguintes propósitos:</p>
         <ul>
           <li>Processar e gerenciar suas compras e pedidos.</li>
@@ -42,7 +47,7 @@ const PrivacyPolicy = () => {
       </div>
 
       <div className="section">
-        <h2>4. Compartilhamento de Informações</h2>
+        <h2>5. Compartilhamento de Informações</h2>
         <p>Não compartilhamos suas informações pessoais com terceiros, exceto:</p>
         <ul>
           <li>Com prestadores de serviços que nos ajudam a operar nosso site e negócios.</li>
@@ -51,7 +56,7 @@ const PrivacyPolicy = () => {
       </div>
 
       <div className="section">
-        <h2>5. Segurança das Informações</h2>
+        <h2>6. Segurança das Informações</h2>
         <p>
           Implementamos medidas de segurança para proteger suas informações pessoais
           contra acesso, alteração, divulgação ou destruição não autorizados. No entanto,
@@ -61,7 +66,7 @@ const PrivacyPolicy = () => {
       </div>
 
       <div className="section">
-        <h2>6. Seus Direitos</h2>
+        <h2>7. Seus Direitos</h2>
         <p>
           Você tem o direito de acessar, corrigir ou excluir suas informações pessoais. Se
           desejar exercer esses direitos, entre em contato conosco através das informações
@@ -70,7 +75,7 @@ const PrivacyPolicy = () => {
       </div>
 
       <div className="section">
-        <h2>7. Alterações nesta Política</h2>
+        <h2>8. Alterações nesta Política</h2>
         <p>
           Podemos atualizar esta política de privacidade periodicamente. Notificaremos
           sobre quaisquer alterações publicando a nova política de privacidade em nosso
@@ -79,7 +84,7 @@ const PrivacyPolicy = () => {
       </div>
 
       <div className="section">
-        <h2>8. Contato</h2>
+        <h2>9. Contato</h2>
         <p>Se você tiver alguma dúvida sobre esta política de privacidade, entre em contato conosco:</p>
         <p>Email: suporte@seuecommerce.com<br />Telefone: (24) 2017-6050</p>
       </div>

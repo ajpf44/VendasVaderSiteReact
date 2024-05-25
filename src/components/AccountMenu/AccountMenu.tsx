@@ -12,10 +12,9 @@ import Logout from "@mui/icons-material/Logout";
 import { SessionContext } from "../../contexts/SessionContext";
 import { useContext } from "react";
 import CustomizedSwitches from "../Button/ButtonSwitch";
-import { useNavigate } from "react-router-dom";
-import { Link } from 'react-router-dom'; 
+import { useNavigate, Link } from "react-router-dom";
 
-export default function AccountMenu() {
+const AccountMenu: React.FC = () => {
   const { logout } = useContext(SessionContext);
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
@@ -36,13 +35,13 @@ export default function AccountMenu() {
 
   const handleAboutUs = () => {
     handleClose();
-    navigate("/members"); // Redireciona para a página "Sobre Nós"
+    navigate("/members");
   };
-  const handleAbout = () => {
+
+  const handlePrivacyPolicy = () => {
     handleClose();
-    navigate("/Privacy"); // Redireciona para a página "Sobre Nós"
+    navigate("/PrivacyPolicy");
   };
-  
 
   return (
     <React.Fragment>
@@ -63,7 +62,6 @@ export default function AccountMenu() {
         id="account-menu"
         open={open}
         onClose={handleClose}
-      //  onClick={handleClose}
         PaperProps={{
           elevation: 0,
           sx: {
@@ -93,10 +91,9 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-       
-        { <MenuItem component={Link} to="/profile"> 
+        <MenuItem component={Link} to="/profile">
           <Avatar /> Profile
-        </MenuItem> }
+        </MenuItem>
         <MenuItem onClick={handleAboutUs}>
           <ListItemIcon>
             <PersonAdd fontSize="small" />
@@ -104,15 +101,14 @@ export default function AccountMenu() {
           Developers
         </MenuItem>
         <Divider />
-        
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={handlePrivacyPolicy}>
           <ListItemIcon>
             <Settings fontSize="small" />
           </ListItemIcon>
           Privacy Policy
         </MenuItem>
         <MenuItem>
-        <CustomizedSwitches />
+          <CustomizedSwitches />
         </MenuItem>
         <MenuItem onClick={handleLogout}>
           <ListItemIcon>
@@ -123,4 +119,6 @@ export default function AccountMenu() {
       </Menu>
     </React.Fragment>
   );
-}
+};
+
+export default AccountMenu;

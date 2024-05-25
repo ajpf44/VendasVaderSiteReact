@@ -13,6 +13,14 @@ import SearchInput from "../../components/SearchInput";
 import { Box, Container } from "@mui/material";
 import LoadingIndiciator from "../../components/LoadingIndicator";
 
+const fetchNewProducts = async () => {
+      
+  const newProducts = await getAllProducts();
+  sessionStorage.setItem("products", JSON.stringify(newProducts));
+
+  return newProducts;
+};
+
 const Products: React.FC = () => {
   const [products, setProducts] = useState<ProductType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -24,14 +32,7 @@ const Products: React.FC = () => {
   const [checkboxesStatus, setCheckboxesStatus] = useState<any>({});
 
   useEffect(() => {
-    const fetchNewProducts = async () => {
-      
-      const newProducts = await getAllProducts();
-      sessionStorage.setItem("products", JSON.stringify(newProducts));
-
-      return newProducts;
-    };
-    const setupCategoriesCheckboxesStatus = async () => {
+    const getAndSetProducts = async () => {
       setLoading(true);
       const productsStoragedJson:string|null = sessionStorage.getItem("products")
 
@@ -47,21 +48,21 @@ const Products: React.FC = () => {
       setProducts(p);
       setProductsToShow(p);
       setLoading(false);
-
-
-      const categoriesStatus = p
-        .map((product) => product.category)
-        .filter((category, index, array) => array.indexOf(category) === index) // Get unique categories
-        .reduce((acc: Record<string, boolean>, category) => {
-          acc[category] = true;
-          return acc;
-        }, {} as Record<string, boolean>);
-
-      setCheckboxesStatus(categoriesStatus);
-      
+      setCategoriesStatus(p);
     };
 
-    setupCategoriesCheckboxesStatus();
+    const setCategoriesStatus = (p: ProductType[])=>{
+      const categoriesStatus = p
+      .map((product) => product.category)
+      .filter((category, index, array) => array.indexOf(category) === index) // Get unique categories
+      .reduce((acc: Record<string, boolean>, category) => {
+        acc[category] = true;
+        return acc;
+      }, {} as Record<string, boolean>);
+      setCheckboxesStatus(categoriesStatus);
+    }
+
+    getAndSetProducts();
   }, []);
 
   const handleFilter = useCallback(

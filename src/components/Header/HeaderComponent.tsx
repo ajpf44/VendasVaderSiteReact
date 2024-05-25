@@ -7,7 +7,6 @@ import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 import logo from "../../assets/Vendas_Vader-removebg-preview.png";
 import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
 import LoginIcon from "@mui/icons-material/Login";
@@ -80,7 +79,7 @@ const HeaderComponent: React.FC = () => {
             color="inherit"
             aria-label="open drawer"
             sx={{ mr: 2 }}
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/home")}
           >
             <img className="officialLogo" src={logo} alt="Logo do Vendas Vader"></img>
           </IconButton>

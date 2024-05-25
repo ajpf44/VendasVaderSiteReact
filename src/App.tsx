@@ -24,6 +24,7 @@ const App = () => {
         <SessionContextProvider>
           <Router>
             <HeaderComponent />
+            <div style={{minHeight: "70vh"}}>
             <CssBaseline />
             <Routes>
               <Route path="/" element={<Products />} />
@@ -38,6 +39,7 @@ const App = () => {
               <Route path="/profile" element={<Profile />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
+          </div>
             <FooterComponent />
           </Router>
         </SessionContextProvider>

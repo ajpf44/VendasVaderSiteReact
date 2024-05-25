@@ -10,15 +10,17 @@ import {
 } from "../../utils/filterProducts";
 import SearchInput from "../../components/SearchInput";
 import { Box, Container } from "@mui/material";
+import {CartContext} from "../../contexts/CartContext";
 
 const Products: React.FC = () => {
   const [products, setProducts] = useState<ProductType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [productsToShow, setProductsToShow] = useState<ProductType[]>([]);
-
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [minPrice, setMinPrice] = useState<string>("");
   const [maxPrice, setMaxPrice] = useState<string>("");
+  const [quantities, setQuantities] = useState< {[key:string]: number}>({});
+  const cartContext = useContext(CartContext);
 
   useEffect(() => {
     const setProductsFromDB = async () => {
@@ -47,6 +49,18 @@ const Products: React.FC = () => {
     [products, searchTerm, minPrice, maxPrice]
   );
 
+  const handleQuantityChange = (id: string, quantity: number) => {
+    setQuantities((prevQuantitties) => ({
+      ...prevQuantitties,
+      [id]: quantity >= 0 ? quantity : 0,
+
+    }));
+  };
+    
+  const handleAddToCart = (product: ProductType) => {
+    const quantity = quantities[product.id] ||1;
+    cartContext.addToCart({...product, quantity});
+  };
   return (
     <>
       <div style={{ position: "absolute", top: -20, left: "50%", transform: "translateX(-50%)" }}>
@@ -72,7 +86,13 @@ const Products: React.FC = () => {
           maxPrice={maxPrice}
         />
         <Box className="mainContainer">
-          <ProductList products={productsToShow} loading={loading} />
+          <ProductList 
+          products={productsToShow} 
+          loading={loading} 
+          quantities={quantities} 
+          onQuantityChange={handleQuantityChange} 
+          onAddToCart={handleAddToCart}
+          />
         </Box>
       </div>
     </Container>

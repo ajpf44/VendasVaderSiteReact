@@ -1,78 +1,68 @@
-import React, { useContext, useEffect } from "react";
-import { CartContext } from "../../contexts/CartContext";
+import React, { useContext } from 'react';
+import { CartContext } from '../../contexts/CartContext';
+import { Typography, Button, Box } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const CartPage: React.FC = () => {
   const cartContext = useContext(CartContext);
 
   if (!cartContext) {
-    return <div>carrinho não está disponível</div>;
+    return <div>Loading...</div>;
   }
 
-  const {
-    cartItems,
-    removeFromCart,
-    updateQuantity,
-    clearCart,
-    getTotalPrice,
-    setCartTestItems,
-  } = cartContext;
+  const { cartItems, removeFromCart, updateQuantity, getTotalPrice, clearCart } = cartContext;
 
-  const handleQuantityChange = (id: number, quantity: number) => {
-    if (quantity >= 0) {
-      updateQuantity(id, quantity);
-    }
-  };
+  const navigate = useNavigate();
 
-  //PEGA OS DADOS DE PRODUTOS E COLOCA NO ARRAY DE CART SÓ PARA TESTAR O LAYOUT
-  useEffect(()=>{
-    setCartTestItems();
-  },[])
+  
 
   return (
-    <div>
-      <h1>Seu Carrinho</h1>
+    <Box sx={{ padding: '2rem' }}>
+      <Typography variant="h4" gutterBottom>
+        Carrinho de Compras
+      </Typography>
       {cartItems.length === 0 ? (
-        <p>Seu Carrinho Está Vazio</p>
+        <Typography variant="body1">Seu carrinho está vazio.</Typography>
       ) : (
-        <div>
+        <>
           {cartItems.map((item) => (
-            <div key={item.id}>
-              <h3>{item.title}</h3>
-              <p>Preço: R${item.price}</p>
+            <Box
+              key={item.id}
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '1rem',
+                marginBottom: '1rem',
+                border: '1px solid #ccc',
+                padding: '1rem',
+              }}
+            >
+              {/*DEFINIR AQUI A IMAGEM DOS PRODUTOS AO LADO DOS PRODUTOS NO CARRINHO DE COMPRAS. PENSAR NUMA FORMA DE RETORNAR AS IMAGENS DO FIREBASE */}
+              <img src={item.image} alt={item.title} style={{ width: '100px', height: '100px', objectFit: 'cover' }} />
               <div>
-                <button
-                  onClick={() =>
-                    handleQuantityChange(item.id, item.quantity - 1)
-                  }
-                  disabled={item.quantity <= 1}
-                >
-                  -
-                </button>
-                <input
-                  type="number"
-                  value={item.quantity}
-                  onChange={(e) =>
-                    handleQuantityChange(item.id, parseInt(e.target.value))
-                  }
-                  min="1"
-                  aria-label={`Quantidade de ${item.title}`}
-                />
-                <button
-                  onClick={() =>
-                    handleQuantityChange(item.id, item.quantity + 1)
-                  }
-                >
-                  +
-                </button>
+                <Typography variant="body1">{item.title}</Typography>
+                <Typography variant="body1">R$ {item.price.toFixed(2)}</Typography>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <Button variant="outlined" onClick={() => updateQuantity(item.id, item.quantity - 1)}>-</Button>
+                  <Typography variant="body1">{item.quantity}</Typography>
+                  <Button variant="outlined" onClick={() => updateQuantity(item.id, item.quantity + 1)}>+</Button>
+                </Box>
+                <Button variant="contained" color="secondary" onClick={() => removeFromCart(item.id)}>
+                  Remover
+                </Button>
               </div>
-              <button onClick={() => removeFromCart(item.id)}>Remover</button>
-            </div>
+            </Box>
           ))}
-          <h2>Total: R${getTotalPrice().toFixed(2)}</h2>
-          <button onClick={clearCart}>Limpar Carrinho</button>
-        </div>
+          <Typography variant="h5">Total: R$ {getTotalPrice().toFixed(2)}</Typography>
+          <Button variant="contained" color="primary" onClick={() => navigate('/checkout')}>
+            Finalizar Compra
+          </Button>
+          <Button variant="outlined" color="secondary" onClick={clearCart}>
+            Limpar Carrinho
+          </Button>
+        </>
       )}
-    </div>
+    </Box>
   );
 };
 

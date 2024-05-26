@@ -16,6 +16,7 @@ import SessionContextProvider from "./contexts/SessionContext";
 import NotFound from "./components/NotFound";
 import PrivacyPolicy from "./pages/Privacy/PrivacyPolicy";
 import { CssBaseline } from "@mui/material";
+import PaymentPage from './pages/Payment/PaymentPage'; 
 
 const App = () => {
   return (
@@ -38,6 +39,7 @@ const App = () => {
               <Route path="/PrivacyPolicy" element={<PrivacyPolicy />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="*" element={<NotFound />} />
+              <Route path="/checkout" element={<PaymentPage />} /> 
             </Routes>
           </div>
             <FooterComponent />

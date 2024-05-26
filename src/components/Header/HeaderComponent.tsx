@@ -15,9 +15,11 @@ import { SessionContext } from "../../contexts/SessionContext";
 import { useContext } from "react";
 import AccountMenu from "../AccountMenu/AccountMenu";
 import { useCartContext } from "../../contexts/CartContext";
+import Button from "@mui/material/Button";
 
 const HeaderComponent: React.FC = () => {
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
+    React.useState<null | HTMLElement>(null);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const { token } = useContext(SessionContext);
   const navigate = useNavigate();
@@ -31,6 +33,15 @@ const HeaderComponent: React.FC = () => {
   const handleCartIconClick = () => {
     navigate("/Cart");
   };
+
+    // //VERIFICA SE O CLIENTE ESTÁ LOGADO. SE ESTIVER, ELE SEGUE COM A COMPRA NA PÁGINA DO CARRINHO. SE NÃO ESTIVER LOGADO, VAI PRA PÁGINA DE LOGIN
+    // const handleCartIconClick = () => {
+    //   if (token) {
+    //     navigate("/Cart");
+    //   } else {
+    //     navigate("/Login");
+    //   }
+    // };
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
@@ -57,7 +68,12 @@ const HeaderComponent: React.FC = () => {
         {token ? (
           <AccountMenu />
         ) : (
-          <IconButton size="large" aria-label="" color="inherit" onClick={handleLoginIconClick}>
+          <IconButton
+            size="large"
+            aria-label=""
+            color="inherit"
+            onClick={handleLoginIconClick}
+          >
             <Badge color="error">
               <LoginIcon color="primary" />
             </Badge>
@@ -66,9 +82,9 @@ const HeaderComponent: React.FC = () => {
       </MenuItem>
       <MenuItem>
         <IconButton onClick={handleCartIconClick}>
-        <Badge badgeContent={totalItems} color="secondary">
-          <LocalGroceryStoreIcon color="primary" />
-        </Badge>  
+          <Badge badgeContent={totalItems} color="secondary">
+            <LocalGroceryStoreIcon color="primary" />
+          </Badge>
         </IconButton>
       </MenuItem>
     </Menu>
@@ -76,7 +92,10 @@ const HeaderComponent: React.FC = () => {
 
   return (
     <Box sx={{}}>
-      <AppBar position="static" sx={{ backgroundColor: "black", height: "5rem" }}>
+      <AppBar
+        position="static"
+        sx={{ backgroundColor: "black", height: "5rem" }}
+      >
         <Toolbar>
           <IconButton
             size="large"
@@ -86,19 +105,38 @@ const HeaderComponent: React.FC = () => {
             sx={{ mr: 2 }}
             onClick={() => navigate("/home")}
           >
-            <img className="officialLogo" src={logo} alt="Logo do Vendas Vader"></img>
+            <img
+              className="officialLogo"
+              src={logo}
+              alt="Logo do Vendas Vader"
+            ></img>
           </IconButton>
 
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <Link to="/products" className="ProductText">
+              {/* Adicionando o botão "Produtos" */}
+              <Button
+              component={Link}
+              to="/products"
+              variant="text"
+              color="inherit"
+              sx={{ mr: 2 }}
+            >
               Produtos
-            </Link>
+            </Button>
+            {/* <Link to="/products" className="ProductText">
+              Produtos
+            </Link> */}
 
             {token ? (
               <AccountMenu />
             ) : (
-              <IconButton size="large" aria-label="" color="inherit" onClick={handleLoginIconClick}>
+              <IconButton
+                size="large"
+                aria-label=""
+                color="inherit"
+                onClick={handleLoginIconClick}
+              >
                 <Badge color="error">
                   <LoginIcon color="primary" />
                 </Badge>
@@ -115,7 +153,7 @@ const HeaderComponent: React.FC = () => {
               color="inherit"
             >
               <Badge badgeContent={totalItems} color="secondary">
-              <LocalGroceryStoreIcon color="primary" />
+                <LocalGroceryStoreIcon color="primary" />
               </Badge>
             </IconButton>
           </Box>

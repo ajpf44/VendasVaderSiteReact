@@ -1,6 +1,6 @@
 
 import React, { useContext } from "react";
-import { getAllUsers } from "../../services/users";
+import { getAllUsers, getUserById } from "../../services/users";
 import useSession from "../../hooks/useSession";
 import { Box } from "@mui/material";
 import ButtonFilled from "../../components/Button/ButtonFilled";
@@ -35,6 +35,16 @@ const Home: React.FC = () => {
         <ButtonFilled onClick={() => getAllUsers()}>
           {" "}
           Console usuários{" "}
+        </ButtonFilled>
+      </div>
+      <div>
+        <ButtonFilled
+          onClick={()=>getUserById("-NyaOMccJFB9unHcS8tC")}
+        >get User By Id</ButtonFilled>
+      </div>
+      <div>
+        <ButtonFilled>
+          
         </ButtonFilled>
       </div>
       <Button variant='contained' color='primary' onClick= {Themectx.toggleTheme}>teste</Button>

@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { CssBaseline } from "@mui/material";
 
 import HeaderComponent from "./components/Header/HeaderComponent";
@@ -15,16 +15,30 @@ import ProfilePage from "./pages/ProfilePage/Profile";
 import NotFound from "./components/NotFound";
 import PaymentPage from "./pages/Payment/PaymentPage";
 import FooterComponent from "./components/Footer/FooterComponent";
-
-import { SessionContext } from "./contexts/SessionContext";
+import useSession from "./hooks/useSession";
+import useCart from "./hooks/useCart";
 
 const SiteRouter = () => {
-  const {setStoragedSession} = useContext(SessionContext);
-  
+  const sessionCtx = useSession();
+  const cartCtx = useCart();
+  const isInitialRender = useRef(true);
+
   useEffect(() => {
-    setStoragedSession()
+    sessionCtx.setStoragedSession()
+    cartCtx.setStoragedCart()
   }, []);
-  
+
+  useEffect(() => {
+    //Initial render garante que esse useEffect não seja executado no início da rederização
+    //isso impede que um carrinho vazio seja guardado na memória do navegador
+    if (isInitialRender.current) {
+      isInitialRender.current = false;
+      return;
+    }
+
+    cartCtx.storeCart();
+  }, [cartCtx.cartItems]);
+
   return (
     <BrowserRouter>
       <HeaderComponent />

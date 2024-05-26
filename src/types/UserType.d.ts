@@ -6,7 +6,7 @@ type UserType = {
     name: string;
     email: string;
     adress?: string;
-    cart?: CartItem;
+    cart?: CartItem[];
 }
 
 export default UserType;

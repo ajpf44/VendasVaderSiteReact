@@ -25,6 +25,7 @@ const Products: React.FC = () => {
   const [productsToShow, setProductsToShow] = useState<ProductType[]>([]);
   const [quantities, setQuantities] = useState<{ [key: number]: number }>({});
 
+  //UseStates Usados para o filtro
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [minPrice, setMinPrice] = useState<string>("");
   const [maxPrice, setMaxPrice] = useState<string>("");
@@ -33,14 +34,15 @@ const Products: React.FC = () => {
   useEffect(() => {
     const getAndSetProducts = async () => {
       setLoading(true);
-      const productsStoragedJson: string | null = sessionStorage.getItem("products");
+      const productsStoragedJson: string | null =
+        sessionStorage.getItem("products");
       let p: ProductType[];
       if (productsStoragedJson == null || productsStoragedJson.length == 0) {
         console.log("no products in storage");
         p = await fetchNewProducts();
       } else {
         console.log("products in storage");
-        p = await JSON.parse(productsStoragedJson) as ProductType[];
+        p = (await JSON.parse(productsStoragedJson)) as ProductType[];
       }
 
       setProducts(p);
@@ -69,6 +71,7 @@ const Products: React.FC = () => {
         products,
         term ?? searchTerm
       );
+
       let searchedAndFilteredProducts = filterProductsByPrice(
         searchedProducts,
         minPrice,
@@ -102,7 +105,8 @@ const Products: React.FC = () => {
   const handleDecreaseQuantity = (productId: number) => {
     setQuantities((prevQuantities) => ({
       ...prevQuantities,
-      [productId]: prevQuantities[productId] > 0 ? prevQuantities[productId] - 1 : 0,
+      [productId]:
+        prevQuantities[productId] > 0 ? prevQuantities[productId] - 1 : 0,
     }));
   };
 
@@ -151,7 +155,7 @@ const Products: React.FC = () => {
             }
           />
           <Box className="mainContainer">
-            <ProductList 
+            <ProductList
               products={productsToShow}
               quantities={quantities}
               onIncreaseQuantity={handleIncreaseQuantity}

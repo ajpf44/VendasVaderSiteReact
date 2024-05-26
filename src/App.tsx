@@ -8,11 +8,11 @@ import SiteRouter from "./Router";
 const App = () => {
   return (
     <AppThemeProvider>
-      <CartProvider>
-        <SessionContextProvider>
+      <SessionContextProvider>
+        <CartProvider>
           <SiteRouter />
-        </SessionContextProvider>
-      </CartProvider>
+        </CartProvider>
+      </SessionContextProvider>
     </AppThemeProvider>
   );
 };

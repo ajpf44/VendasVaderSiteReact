@@ -100,6 +100,7 @@ const ProductDetail: React.FC = () => {
                     minWidth: 0,
                     borderRadius: "1rem",
                   }}
+                  key={index}
                   variant="contained"
                   color={index == imageIndex ? "secondary" : "info"}
                   onClick={() => setImageIndex(index)}

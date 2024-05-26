@@ -15,6 +15,7 @@ import ProfilePage from "./pages/ProfilePage/Profile";
 import NotFound from "./components/NotFound";
 import PaymentPage from "./pages/Payment/PaymentPage";
 import FooterComponent from "./components/Footer/FooterComponent";
+
 import useSession from "./hooks/useSession";
 import useCart from "./hooks/useCart";
 
@@ -28,6 +29,7 @@ const SiteRouter = () => {
     cartCtx.setStoragedCart()
   }, []);
 
+  //Use effect utilizado para guardar o carrinho toda vez que acontece uma mudança
   useEffect(() => {
     //Initial render garante que esse useEffect não seja executado no início da rederização
     //isso impede que um carrinho vazio seja guardado na memória do navegador

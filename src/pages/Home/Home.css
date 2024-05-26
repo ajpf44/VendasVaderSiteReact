@@ -1,0 +1,16 @@
+@font-face {
+  font-family: "StarJedi";
+  src: url("../../assets/fonts/Stjldbl1.ttf") format("truetype");
+}
+
+.jediFont{
+    font-family: 'StarJedi', Arial, Helvetica, sans-serif !important;
+}
+.title{
+    letter-spacing: 0.5rem !important;
+    text-shadow: 
+    -1px -1px 0 #fff, /* Top-left shadow */
+    1px -1px 0 #fff, /* Top-right shadow */
+    -1px 1px 0 #fff, /* Bottom-left shadow */
+    1px 1px 0 #fff;
+}

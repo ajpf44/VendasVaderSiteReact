@@ -1,17 +1,11 @@
-
 import React, { useContext } from "react";
-import { getAllUsers, getUserById } from "../../services/users";
-import useSession from "../../hooks/useSession";
-import { Box } from "@mui/material";
-import ButtonFilled from "../../components/Button/ButtonFilled";
-import { Button } from "@mui/material";
-import { ThemeContext } from "../../contexts/ThemeContext";
 
+import { Box, Typography } from "@mui/material";
+
+import img from "../../assets/backgroundHome.jpg";
+import "./Home.css";
 
 const Home: React.FC = () => {
-  const session = useSession();
-  const Themectx = useContext(ThemeContext)
-
   return (
     <Box
       sx={{
@@ -19,39 +13,40 @@ const Home: React.FC = () => {
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
-        height: "89.2vh",
+        minHeight: "90vh",
         gap: "1rem",
         fontSize: "1.2rem",
-        backgroundColor: "primary.main",
+        backgroundImage: `url(${img})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
         color: "primary.contrastText",
         textAlign: "center",
       }}
     >
-      <h1>Projeto React Web - Ecommerce</h1>
-
-      {session.user?.name ? <p>Olá usuário {session.user?.name}</p> : ""}
-
-      <div>
-        <ButtonFilled onClick={() => getAllUsers()}>
+      <Box
+        className="animate"
+        sx={{ background: "rgba(0,0,0,0.5)", width: "100%", height: "90vh" }}
+      >
+        <Typography
+          variant="h1"
+          color="secondary.dark"
+          className="title jediFont"
+        >
           {" "}
-          Console usuários{" "}
-        </ButtonFilled>
-      </div>
-      <div>
-        <ButtonFilled
-          onClick={()=>getUserById("-NyaOMccJFB9unHcS8tC")}
-        >get User By Id</ButtonFilled>
-      </div>
-      <div>
-        <ButtonFilled>
-          
-        </ButtonFilled>
-      </div>
-      <Button variant='contained' color='primary' onClick= {Themectx.toggleTheme}>teste</Button>
-      <p>
-        Como importa no váriaveis de ambiente no código:{" "}
-        {import.meta.env.VITE_foo_var}
-      </p>
+          vendas vader
+        </Typography>
+        <Typography color={"white"} className="jediFont" margin={1}>
+          Produtos intergaláticos
+        </Typography>
+        <Typography
+          variant="body1"
+          color={"white"}
+          maxWidth="70vw"
+          textAlign="justify"
+          margin="auto"
+        >
+        </Typography>
+      </Box>
     </Box>
   );
 };

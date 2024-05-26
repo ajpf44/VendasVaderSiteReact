@@ -29,8 +29,6 @@ const HeaderComponent: React.FC = () => {
     navigate("/Login");
   };
 
-  console.log("Valor de Token: " + token);
-
   //VERIFICA SE O CLIENTE ESTÁ LOGADO. SE ESTIVER, ELE SEGUE COM A COMPRA NA PÁGINA DO CARRINHO. SE NÃO ESTIVER LOGADO, VAI PRA PÁGINA DE LOGIN
   const handleCartIconClick = () => {
     if (token) {

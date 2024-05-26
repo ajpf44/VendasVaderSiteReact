@@ -47,7 +47,6 @@ export default function Login() {
 
     try {
       const userToken = await signin(email, password);
-      console.log(userToken);
       if (!userToken) {
         setError("Corrija os dados!");
         setLoading(false);

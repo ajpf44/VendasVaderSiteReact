@@ -21,10 +21,10 @@ import { SessionContext } from "./contexts/SessionContext";
 const SiteRouter = () => {
   const {setStoragedSession} = useContext(SessionContext);
   
-
   useEffect(() => {
     setStoragedSession()
   }, []);
+  
   return (
     <BrowserRouter>
       <HeaderComponent />

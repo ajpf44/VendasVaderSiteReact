@@ -1,24 +1,39 @@
-import React, { useState, useContext, ChangeEvent, FormEvent } from 'react';
-import { Typography, Box, TextField, Button, Avatar, Container, Paper } from '@mui/material';
+import React, { useState, useContext, ChangeEvent, FormEvent, useEffect } from 'react';
+import { Typography, Box, TextField, Button, Avatar, Container, Paper, IconButton } from '@mui/material';
 import { styled } from '@mui/system';
 import { SessionContext, SessionContextType } from "../../contexts/SessionContext";
 import PersonIcon from '@mui/icons-material/Person';
+import EditIcon from '@mui/icons-material/Edit';
 
 const StyledContainer = styled(Container)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  backgroundColor: '#2E2E2E',
-  color: '#FFF',
+  backgroundColor: '#FFF',
+  color: '#000',
   minHeight: '100vh',
   padding: '20px',
 }));
 
 const StyledAvatar = styled(Avatar)(({ theme }) => ({
-  backgroundColor: '#6A1B9A',
+  backgroundColor: '#FF69B4',
   width: 100,
   height: 100,
   marginBottom: '20px',
+  cursor: 'pointer',
+  position: 'relative',
+}));
+
+const EditAvatarButton = styled(IconButton)(({ theme }) => ({
+  position: 'absolute',
+  bottom: 0,
+  right: 0,
+  backgroundColor: '#FFF',
+  color: '#FF69B4',
+  '&:hover': {
+    backgroundColor: '#FF1493',
+    color: '#FFF',
+  },
 }));
 
 const StyledForm = styled('form')(({ theme }) => ({
@@ -29,42 +44,52 @@ const StyledForm = styled('form')(({ theme }) => ({
 const StyledTextField = styled(TextField)(({ theme }) => ({
   marginBottom: '15px',
   '& label.Mui-focused': {
-    color: '#6A1B9A',
+    color: '#FF69B4',
   },
   '& .MuiInput-underline:after': {
-    borderBottomColor: '#6A1B9A',
+    borderBottomColor: '#FF69B4',
   },
   '& .MuiOutlinedInput-root': {
     '& fieldset': {
-      borderColor: '#6A1B9A',
+      borderColor: '#FF69B4',
     },
     '&:hover fieldset': {
-      borderColor: '#8E24AA',
+      borderColor: '#FF1493',
     },
     '&.Mui-focused fieldset': {
-      borderColor: '#6A1B9A',
+      borderColor: '#FF69B4',
     },
   },
 }));
 
 const StyledButton = styled(Button)(({ theme }) => ({
   marginTop: '20px',
-  backgroundColor: '#6A1B9A',
+  backgroundColor: '#FF69B4',
   color: '#FFF',
   '&:hover': {
-    backgroundColor: '#8E24AA',
+    backgroundColor: '#FF1493',
   },
 }));
 
 const ProfilePage: React.FC = () => {
-  const { user, updateUser } = useContext(SessionContext) as SessionContextType;
+  const { user, setUser } = useContext(SessionContext) as SessionContextType;
+
   const [newUserInfo, setNewUserInfo] = useState({
-    name: user?.name || '',
-    email: user?.email || '',
-    age: user?.age || '',
-    address: user?.address || '',
-    phone: user?.phone || '',
+    name: '',
+    email: '',
+    age: '',
+    address: '',
+    phone: '',
+    bio: '',
+    job: '',
+    company: ''
   });
+
+  useEffect(() => {
+    if (user) {
+      setNewUserInfo(user);
+    }
+  }, [user]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -76,16 +101,22 @@ const ProfilePage: React.FC = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    updateUser(newUserInfo);
+    setUser(newUserInfo);
+    localStorage.setItem('userInfo', JSON.stringify(newUserInfo));
   };
 
   return (
     <StyledContainer component="main" maxWidth="sm">
-      <Paper elevation={3} sx={{ p: 4, width: '100%', textAlign: 'center', backgroundColor: '#333', color: '#fff' }}>
-        <StyledAvatar>
-          <PersonIcon fontSize="large" />
-        </StyledAvatar>
-        <Typography component="h1" variant="h4">
+      <Paper elevation={3} sx={{ p: 4, width: '100%', textAlign: 'center', backgroundColor: '#FFF', color: '#000' }}>
+        <Box sx={{ position: 'relative', display: 'inline-block' }}>
+          <StyledAvatar>
+            <PersonIcon fontSize="large" />
+          </StyledAvatar>
+          <EditAvatarButton aria-label="edit avatar">
+            <EditIcon />
+          </EditAvatarButton>
+        </Box>
+        <Typography component="h1" variant="h4" sx={{ color: '#000', marginBottom: '20px' }}>
           Profile Information
         </Typography>
         <StyledForm onSubmit={handleSubmit}>
@@ -129,7 +160,35 @@ const ProfilePage: React.FC = () => {
             fullWidth
             variant="outlined"
           />
-          
+          <StyledTextField
+            name="bio"
+            label="Bio"
+            value={newUserInfo.bio}
+            onChange={handleChange}
+            fullWidth
+            multiline
+            rows={4}
+            variant="outlined"
+          />
+          <StyledTextField
+            name="job"
+            label="Job"
+            value={newUserInfo.job}
+            onChange={handleChange}
+            fullWidth
+            variant="outlined"
+          />
+          <StyledTextField
+            name="company"
+            label="Company"
+            value={newUserInfo.company}
+            onChange={handleChange}
+            fullWidth
+            variant="outlined"
+          />
+          <StyledButton type="submit" fullWidth variant="contained">
+            Save
+          </StyledButton>
         </StyledForm>
       </Paper>
     </StyledContainer>

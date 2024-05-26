@@ -1,7 +1,6 @@
-import { createContext, useState, ReactNode, FC } from "react";
+import { createContext, useState, ReactNode, FC, useEffect } from "react";
 import { login, createUser } from "../services/auth";
 import { createUserAtFirebase, getUserByEmail } from "../services/users";
-
 import UserType from "../types/UserType";
 
 interface Session {
@@ -46,6 +45,10 @@ const SessionContextProvider: FC<SessionContextProviderProps> = ({
   const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<UserType>();
 
+  useEffect(() => {
+    setStoragedSession();
+  }, []);
+
   const signin = async (
     email: string,
     password: string
@@ -79,12 +82,18 @@ const SessionContextProvider: FC<SessionContextProviderProps> = ({
       const newUser: UserType = {
         name: name,
         email: email,
-        adress: "",
+        address: "",
         cart: undefined,
       };
 
       createUserAtFirebase(newUser);
       setUser(newUser);
+
+      const sessionInfoJSON = JSON.stringify({
+        user: newUser,
+        token: userToken,
+      });
+      sessionStorage.setItem("sessionInfo", sessionInfoJSON);
     }
     return userToken;
   };
@@ -98,9 +107,9 @@ const SessionContextProvider: FC<SessionContextProviderProps> = ({
 
   const setStoragedSession = async () => {
     const sessionJSON = sessionStorage.getItem("sessionInfo");
-    if (sessionJSON == "" || !sessionJSON) return;
+    if (sessionJSON === "" || !sessionJSON) return;
 
-    const { user, token }: Session = await JSON.parse(sessionJSON);
+    const { user, token }: Session = JSON.parse(sessionJSON);
     setToken(token);
     setUser(user);
   };

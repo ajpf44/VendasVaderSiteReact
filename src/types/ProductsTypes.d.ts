@@ -1,14 +1,14 @@
 type ProductType = {
-  category: string;
-  description: string;
-  discountPercentage: string;
   id: number;
-  images: string[];
-  price: string;
+  title: string;
+  description: string;
+  price: number;
+  discountPercentage: string;
   rating: string;
   stock: string;
+  category: string;
   thumbnail: string;
-  title: string;
+  images: string[];
 };
 
 export { ProductType };

@@ -14,12 +14,15 @@ import { Link, useNavigate } from "react-router-dom";
 import { SessionContext } from "../../contexts/SessionContext";
 import { useContext } from "react";
 import AccountMenu from "../AccountMenu/AccountMenu";
+import { useCartContext } from "../../contexts/CartContext";
 
 const HeaderComponent: React.FC = () => {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   const { token } = useContext(SessionContext);
   const navigate = useNavigate();
+  const { getTotalItems } = useCartContext(); // Adicionado para obter o total de itens no carrinho
+  const totalItems = getTotalItems(); // Número total de itens no carrinho
 
   const handleLoginIconClick = () => {
     navigate("/Login");
@@ -63,7 +66,9 @@ const HeaderComponent: React.FC = () => {
       </MenuItem>
       <MenuItem>
         <IconButton onClick={handleCartIconClick}>
+        <Badge badgeContent={totalItems} color="secondary">
           <LocalGroceryStoreIcon color="primary" />
+        </Badge>  
         </IconButton>
       </MenuItem>
     </Menu>
@@ -109,7 +114,9 @@ const HeaderComponent: React.FC = () => {
               onClick={handleCartIconClick}
               color="inherit"
             >
+              <Badge badgeContent={totalItems} color="secondary">
               <LocalGroceryStoreIcon color="primary" />
+              </Badge>
             </IconButton>
           </Box>
         </Toolbar>

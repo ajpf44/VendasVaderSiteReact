@@ -1,6 +1,3 @@
-
-
-
 import React, { useEffect, useState, useCallback } from "react";
 import ProductList from "./components/ProductList";
 import { getAllProducts } from "../../services/products";
@@ -14,13 +11,11 @@ import {
 } from "../../utils/filterProducts";
 import SearchInput from "../../components/SearchInput";
 import { Box, Container } from "@mui/material";
-import LoadingIndiciator from "../../components/LoadingIndicator";
+import LoadingIndicator from "../../components/LoadingIndicator";
 
 const fetchNewProducts = async () => {
-      
   const newProducts = await getAllProducts();
   sessionStorage.setItem("products", JSON.stringify(newProducts));
-
   return newProducts;
 };
 
@@ -38,34 +33,32 @@ const Products: React.FC = () => {
   useEffect(() => {
     const getAndSetProducts = async () => {
       setLoading(true);
-      const productsStoragedJson:string|null = sessionStorage.getItem("products")
-      let p:ProductType[];
-      if(productsStoragedJson==null || productsStoragedJson.length == 0 ){
+      const productsStoragedJson: string | null = sessionStorage.getItem("products");
+      let p: ProductType[];
+      if (productsStoragedJson == null || productsStoragedJson.length == 0) {
         console.log("no products in storage");
-        
         p = await fetchNewProducts();
-      } else{
+      } else {
         console.log("products in storage");
         p = await JSON.parse(productsStoragedJson) as ProductType[];
       }
 
       setProducts(p);
       setProductsToShow(p);
-
       setLoading(false);
       setCategoriesStatus(p);
     };
 
-    const setCategoriesStatus = (p: ProductType[])=>{
+    const setCategoriesStatus = (p: ProductType[]) => {
       const categoriesStatus = p
-      .map((product) => product.category)
-      .filter((category, index, array) => array.indexOf(category) === index) // Get unique categories
-      .reduce((acc: Record<string, boolean>, category) => {
-        acc[category] = true;
-        return acc;
-      }, {} as Record<string, boolean>);
+        .map((product) => product.category)
+        .filter((category, index, array) => array.indexOf(category) === index) // Get unique categories
+        .reduce((acc: Record<string, boolean>, category) => {
+          acc[category] = true;
+          return acc;
+        }, {} as Record<string, boolean>);
       setCheckboxesStatus(categoriesStatus);
-    }
+    };
 
     getAndSetProducts();
   }, []);
@@ -114,7 +107,7 @@ const Products: React.FC = () => {
   };
 
   if (loading) {
-    return <LoadingIndiciator size={100} />;
+    return <LoadingIndicator size={100} />;
   }
 
   return (
@@ -134,7 +127,7 @@ const Products: React.FC = () => {
             handleFilter(evt.target.value);
           }}
           onKeyDown={(evt) => {
-            if (evt.code == "Enter") {
+            if (evt.code === "Enter") {
               handleFilter(searchTerm);
             }
           }}
@@ -159,7 +152,7 @@ const Products: React.FC = () => {
           />
           <Box className="mainContainer">
             <ProductList 
-              products={productsToShow} 
+              products={productsToShow}
               quantities={quantities}
               onIncreaseQuantity={handleIncreaseQuantity}
               onDecreaseQuantity={handleDecreaseQuantity}

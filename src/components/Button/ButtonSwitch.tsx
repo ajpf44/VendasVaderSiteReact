@@ -61,7 +61,7 @@ export default function CustomizedSwitches() {
   return (
     <FormGroup>
       <FormControlLabel
-        control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked={Themectx.themeName=="dark"?true:false} />}
+        control={<MaterialUISwitch sx={{ m: 1 }} checked={Themectx.themeName=="dark"?true:false} />}
         label="Tema"
         onClick={Themectx.toggleTheme}
       />

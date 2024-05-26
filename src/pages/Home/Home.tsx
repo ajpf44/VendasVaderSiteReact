@@ -6,6 +6,7 @@ import img from "../../assets/backgroundHome.jpg";
 import "./Home.css";
 import ButtonEmpty from "../../components/Button/ButtonEmpty";
 import { Link as LinkRouter } from "react-router-dom";
+import { GitHub } from "@mui/icons-material";
 
 const Home: React.FC = () => {
   return (
@@ -97,7 +98,7 @@ const Home: React.FC = () => {
                 href="https://github.com/ajpf44/e-commerce-react"
                 target="_blank"
               >
-                Repositório do Github.
+                Repositório do Github <GitHub sx={{fontSize:" 1rem"}}/>. 
               </Link>
             </Typography>
 
@@ -115,7 +116,7 @@ const Home: React.FC = () => {
                 to={"https://github.com/ajpf44/e-commerce-react"}
                 target="_blank"
               >
-                <ButtonEmpty color="primary">Repositório</ButtonEmpty>
+                <ButtonEmpty color="primary">Repositório  </ButtonEmpty>
               </LinkRouter>
             </Box>
           </Box>

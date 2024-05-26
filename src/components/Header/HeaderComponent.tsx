@@ -30,18 +30,16 @@ const HeaderComponent: React.FC = () => {
     navigate("/Login");
   };
 
-  const handleCartIconClick = () => {
-    navigate("/Cart");
-  };
+  
 
-    // //VERIFICA SE O CLIENTE ESTÁ LOGADO. SE ESTIVER, ELE SEGUE COM A COMPRA NA PÁGINA DO CARRINHO. SE NÃO ESTIVER LOGADO, VAI PRA PÁGINA DE LOGIN
-    // const handleCartIconClick = () => {
-    //   if (token) {
-    //     navigate("/Cart");
-    //   } else {
-    //     navigate("/Login");
-    //   }
-    // };
+    //VERIFICA SE O CLIENTE ESTÁ LOGADO. SE ESTIVER, ELE SEGUE COM A COMPRA NA PÁGINA DO CARRINHO. SE NÃO ESTIVER LOGADO, VAI PRA PÁGINA DE LOGIN
+    const handleCartIconClick = () => {
+      if (token) {
+        navigate("/Cart");
+      } else {
+        navigate("/Login");
+      }
+    };
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);

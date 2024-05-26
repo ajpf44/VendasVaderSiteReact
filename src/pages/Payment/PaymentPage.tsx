@@ -9,7 +9,11 @@ const PaymentPage: React.FC = () => {
   const handleConfirmPayment = () => {
     // Verificar se uma opção foi selecionada antes de confirmar o pagamento
     if (selectedPaymentMethod) {
-      // Lógica para confirmar o pagamento
+      // Lógica para confirmar o pagamento que não vamos incluir pois não é o propósito do projeto nesta etapa. Não queremos problemas legais :D. 
+     
+      //INCLUINDO SOMENTE PARA QUE AO FINALIZAR A COMPRA VÁ PARA A PÁGINA INICIAL DO SITE.
+      navigate('/');
+
     } else {
       alert('Selecione um método de pagamento antes de continuar.');
     }

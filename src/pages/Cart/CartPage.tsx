@@ -22,11 +22,11 @@ const CartPage: React.FC = () => {
 
   return (
     <Box sx={{ padding: "2rem" }}>
-      <Typography variant="h4" gutterBottom>
+      <Typography variant="h4" gutterBottom color="primary.contrastText">
         Carrinho de Compras
       </Typography>
       {cartItems.length === 0 ? (
-        <Typography variant="body1">Seu carrinho está vazio.</Typography>
+        <Typography variant="body1" color="primary.contrastText">Seu carrinho está vazio.</Typography>
       ) : (
         <>
           {cartItems.map((item) => (
@@ -87,7 +87,7 @@ const CartPage: React.FC = () => {
             </Card>
           ))}
           <Box sx={{display: "flex", flexDirection: "column", gap: "2rem"}}>
-            <Typography variant="h5">
+            <Typography variant="h5" color="primary.contrastText">
               Total: R$ {getTotalPrice().toFixed(2)}
             </Typography>
             <Box sx={{ display: "flex", gap: "1rem" }}>

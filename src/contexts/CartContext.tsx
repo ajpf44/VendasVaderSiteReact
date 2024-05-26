@@ -79,6 +79,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   }
 
   const storeCart = async ()=>{
+    console.log("novo carrinho local")
     const cartJSON = JSON.stringify(cartItems);
     sessionStorage.setItem("myCart", cartJSON);
   }

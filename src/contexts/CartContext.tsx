@@ -1,6 +1,5 @@
 import React, { createContext, useState, ReactNode, useContext } from 'react';
 import CartItem from '../types/CartInterface';
-import { getAllProducts } from '../services/products';
 
 interface CartContextProps {
   cartItems: CartItem[];
@@ -10,7 +9,6 @@ interface CartContextProps {
   clearCart: () => void;
   getTotalPrice: () => number;
   getTotalItems: () => number;
-  setCartTestItems: ()=> void;
 }
 
 export const CartContext = createContext<CartContextProps | null>(null);
@@ -62,22 +60,9 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     return cartItems.reduce((total, item) => total + item.quantity, 0);
   };
 
-  const setCartTestItems =  async() =>{
-    const products = await getAllProducts()
-    const cart = products.map((product, index) => {
-      return {
-        id: index,
-        title: product.title,
-        price: Number(product.price),
-        quantity: 1
-      }
-    } );
-
-    setCartItems(cart)
-  }
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity, clearCart, getTotalPrice,getTotalItems, setCartTestItems }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity, clearCart, getTotalPrice,getTotalItems }}>
       {children}
     </CartContext.Provider>
   );

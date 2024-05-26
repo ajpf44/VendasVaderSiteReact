@@ -15,6 +15,8 @@ export interface SessionContextType {
     name: string
   ) => Promise<string | undefined>;
   logout: () => void;
+  setToken: (token: string)=>void,
+  setUser: (user:UserType)=>void,
 }
 
 // Criando o contexto com tipagem inicial
@@ -25,6 +27,8 @@ export const SessionContext = createContext<SessionContextType>({
   signin: async () => undefined,
   signup: async () => undefined,
   logout: () => {},
+  setToken: ()=> {},
+  setUser: ()=>{}
 });
 
 interface SessionContextProviderProps {
@@ -50,6 +54,10 @@ const SessionContextProvider: FC<SessionContextProviderProps> = ({
 
       const firebaseUser = await getUserByEmail(email);
       setUser(firebaseUser);
+
+      const sessionInfoJSON = JSON.stringify({user :firebaseUser, token: userToken})
+      console.log(sessionInfoJSON);
+      sessionStorage.setItem("sessionInfo", sessionInfoJSON)
     }
     return userToken;
   };
@@ -78,6 +86,7 @@ const SessionContextProvider: FC<SessionContextProviderProps> = ({
 
   const logout = (): void => {
     setToken(null);
+    setUser(undefined);
     setIsAuthenticated(false);
   };
 
@@ -88,6 +97,8 @@ const SessionContextProvider: FC<SessionContextProviderProps> = ({
     signin: signin,
     signup: signup,
     logout: logout,
+    setToken: setToken,
+    setUser: setUser
   };
 
   return (

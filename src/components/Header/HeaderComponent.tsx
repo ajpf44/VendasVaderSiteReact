@@ -15,7 +15,6 @@ import { SessionContext } from "../../contexts/SessionContext";
 import { useContext } from "react";
 import AccountMenu from "../AccountMenu/AccountMenu";
 import { useCartContext } from "../../contexts/CartContext";
-import Button from "@mui/material/Button";
 
 const HeaderComponent: React.FC = () => {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
@@ -30,16 +29,16 @@ const HeaderComponent: React.FC = () => {
     navigate("/Login");
   };
 
-  
+  console.log("Valor de Token: " + token);
 
-    //VERIFICA SE O CLIENTE ESTÁ LOGADO. SE ESTIVER, ELE SEGUE COM A COMPRA NA PÁGINA DO CARRINHO. SE NÃO ESTIVER LOGADO, VAI PRA PÁGINA DE LOGIN
-    const handleCartIconClick = () => {
-      if (token) {
-        navigate("/Cart");
-      } else {
-        navigate("/Login");
-      }
-    };
+  //VERIFICA SE O CLIENTE ESTÁ LOGADO. SE ESTIVER, ELE SEGUE COM A COMPRA NA PÁGINA DO CARRINHO. SE NÃO ESTIVER LOGADO, VAI PRA PÁGINA DE LOGIN
+  const handleCartIconClick = () => {
+    if (token) {
+      navigate("/Cart");
+    } else {
+      navigate("/Login");
+    }
+  };
 
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
@@ -73,7 +72,7 @@ const HeaderComponent: React.FC = () => {
             onClick={handleLoginIconClick}
           >
             <Badge color="error">
-              <LoginIcon color="primary" />
+              <LoginIcon color="secondary" />
             </Badge>
           </IconButton>
         )}
@@ -112,19 +111,9 @@ const HeaderComponent: React.FC = () => {
 
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-              {/* Adicionando o botão "Produtos" */}
-              <Button
-              component={Link}
-              to="/products"
-              variant="text"
-              color="inherit"
-              sx={{ mr: 2 }}
-            >
+            <Link to="/products" className="ProductText">
               Produtos
-            </Button>
-            {/* <Link to="/products" className="ProductText">
-              Produtos
-            </Link> */}
+            </Link>
 
             {token ? (
               <AccountMenu />

@@ -10,20 +10,12 @@ const Cart: React.FC = () => {
 
   const { cartItems} = cartContext;
 
-  // const handleAddToCart = (item: {
-  //   id: number;
-  //   name: string;
-  //   price: number;
-  // }) => {
-  //   addToCart({ ...item, quantity: 1 });
-  // };
-
   return (
     <div>
       <h2>Carrinho</h2>
       {cartItems.map((item) => (
         <div key={item.id}>
-          <h3>{item.name}</h3>
+          <h3>{item.title}</h3>
           <p>Preço: R${item.price}</p>
           <p>Quantidade: {item.quantity}</p>
         </div>

@@ -17,26 +17,13 @@ import PaymentPage from "./pages/Payment/PaymentPage";
 import FooterComponent from "./components/Footer/FooterComponent";
 
 import { SessionContext } from "./contexts/SessionContext";
-import UserType from "./types/UserType";
 
-interface Session {
-    user: UserType,
-    token: string
-  }
 const SiteRouter = () => {
-  const sessionCtx = useContext(SessionContext);
-  const setStoragedSession = async () => {
-    const sessionJSON = sessionStorage.getItem("sessionInfo");
-    if (sessionJSON == "" || !sessionJSON) return;
-
-    const { user, token }: Session = await JSON.parse(sessionJSON);
-
-    sessionCtx.setToken(token);
-    sessionCtx.setUser(user);
-  };
+  const {setStoragedSession} = useContext(SessionContext);
+  
 
   useEffect(() => {
-    setStoragedSession();
+    setStoragedSession()
   }, []);
   return (
     <BrowserRouter>

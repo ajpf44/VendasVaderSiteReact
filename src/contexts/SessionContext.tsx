@@ -62,7 +62,6 @@ const SessionContextProvider: FC<SessionContextProviderProps> = ({
         user: firebaseUser,
         token: userToken,
       });
-      console.log(sessionInfoJSON);
       sessionStorage.setItem("sessionInfo", sessionInfoJSON);
     }
     return userToken;

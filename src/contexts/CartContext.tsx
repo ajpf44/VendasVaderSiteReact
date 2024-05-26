@@ -1,4 +1,4 @@
-import React, { createContext, useState, ReactNode, useContext } from 'react';
+import React, { createContext, useState, ReactNode, useContext, useEffect } from 'react';
 import CartItem from '../types/CartInterface';
 
 interface CartContextProps {
@@ -34,10 +34,14 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         return [...prevItems, {...item, quantity: 1}]; //Adicionando quantidade inicial de um produto
       }
     });
+
+    storeCart()
   };
 
   const removeFromCart = (id: number) => {
     setCartItems(prevItems => prevItems.filter(item => item.id !== id));
+
+    storeCart()
   };
 
   const updateQuantity = (id: number, quantity: number) => {
@@ -46,10 +50,14 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         item.id === id ? { ...item, quantity } : item
       )
     );
+
+    storeCart()
   };
 
   const clearCart = () => {
     setCartItems([]);
+
+    storeCart()
   };
 
   const getTotalPrice = () => {
@@ -60,6 +68,24 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     return cartItems.reduce((total, item) => total + item.quantity, 0);
   };
 
+  const getStoragedCart = async ()=>{
+    const cartJSON = sessionStorage.getItem("myCart");
+    console.log("Esse é meu carriinho: ");
+    console.log(cartJSON);
+    if (cartJSON == "" || !cartJSON) return;
+
+    const myCart = await JSON.parse(cartJSON);
+    setCartItems(myCart);
+  }
+
+  const storeCart = async ()=>{
+    const cartJSON = JSON.stringify(cartItems);
+    sessionStorage.setItem("myCart", cartJSON);
+  }
+
+  useEffect(()=>{
+    getStoragedCart();
+  },[])
 
   return (
     <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity, clearCart, getTotalPrice,getTotalItems }}>

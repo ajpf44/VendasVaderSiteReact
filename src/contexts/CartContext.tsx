@@ -1,4 +1,4 @@
-import React, { createContext, useState, ReactNode, useContext, useEffect } from 'react';
+import React, { createContext, useState, ReactNode, useContext, useEffect, useRef } from 'react';
 import CartItem from '../types/CartInterface';
 
 interface CartContextProps {
@@ -22,6 +22,7 @@ export const CartContext = createContext<CartContextProps | null>(null);
 
 export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const isInitialRender = useRef(true);
 
   const addToCart = (item: CartItem) => {
     setCartItems(prevItems => {
@@ -34,14 +35,11 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         return [...prevItems, {...item, quantity: 1}]; //Adicionando quantidade inicial de um produto
       }
     });
-
-    storeCart()
+    
   };
 
   const removeFromCart = (id: number) => {
     setCartItems(prevItems => prevItems.filter(item => item.id !== id));
-
-    storeCart()
   };
 
   const updateQuantity = (id: number, quantity: number) => {
@@ -50,14 +48,10 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         item.id === id ? { ...item, quantity } : item
       )
     );
-
-    storeCart()
   };
 
   const clearCart = () => {
     setCartItems([]);
-
-    storeCart()
   };
 
   const getTotalPrice = () => {
@@ -80,6 +74,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const storeCart = async ()=>{
     console.log("novo carrinho local")
+    console.log(cartItems);
     const cartJSON = JSON.stringify(cartItems);
     sessionStorage.setItem("myCart", cartJSON);
   }
@@ -87,6 +82,17 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   useEffect(()=>{
     getStoragedCart();
   },[])
+
+  useEffect(()=>{
+    //Initial render garante que esse useEffect não seja executado no início da rederização
+    //isso impede que um carrinho vazio seja guardado na memória do navegador
+    if(isInitialRender.current){
+      isInitialRender.current = false; 
+      return;
+    }
+
+    storeCart();
+  }, [cartItems])
 
   return (
     <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQuantity, clearCart, getTotalPrice,getTotalItems }}>

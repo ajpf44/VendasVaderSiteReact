@@ -31,7 +31,7 @@ const ProductCardMUI: React.FC<ProductCardProps> = ({
       const itemToAdd = { ...prod, price: Number(prod.price), quantity };
       addToCart(itemToAdd);
     } else {
-      alert("A quantidade deve ser maior que zero");
+      alert("Adicione a quantidade de itens que deseja ao carrinho.");
     }
   };
 

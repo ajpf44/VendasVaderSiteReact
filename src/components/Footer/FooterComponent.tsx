@@ -1,7 +1,7 @@
 import "./Footer.css"
 import GitHubIcon from '@mui/icons-material/GitHub';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const FooterComponent = () => {
    
     const navigate = useNavigate();

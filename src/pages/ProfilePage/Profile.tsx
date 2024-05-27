@@ -4,8 +4,9 @@ import { styled } from '@mui/system';
 import { SessionContext, SessionContextType } from "../../contexts/SessionContext";
 import PersonIcon from '@mui/icons-material/Person';
 import EditIcon from '@mui/icons-material/Edit';
+import UserType from '../../types/UserType';
 
-const StyledContainer = styled(Container)(({ theme }) => ({
+const StyledContainer = styled(Container)(() => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -15,7 +16,7 @@ const StyledContainer = styled(Container)(({ theme }) => ({
   padding: '20px',
 }));
 
-const StyledAvatar = styled(Avatar)(({ theme }) => ({
+const StyledAvatar = styled(Avatar)(() => ({
   backgroundColor: '#FF69B4',
   width: 100,
   height: 100,
@@ -24,7 +25,7 @@ const StyledAvatar = styled(Avatar)(({ theme }) => ({
   position: 'relative',
 }));
 
-const EditAvatarButton = styled(IconButton)(({ theme }) => ({
+const EditAvatarButton = styled(IconButton)(() => ({
   position: 'absolute',
   bottom: 0,
   right: 0,
@@ -36,12 +37,12 @@ const EditAvatarButton = styled(IconButton)(({ theme }) => ({
   },
 }));
 
-const StyledForm = styled('form')(({ theme }) => ({
+const StyledForm = styled('form')(() => ({
   width: '100%',
   marginTop: '20px',
 }));
 
-const StyledTextField = styled(TextField)(({ theme }) => ({
+const StyledTextField = styled(TextField)(() => ({
   marginBottom: '15px',
   '& label.Mui-focused': {
     color: '#FF69B4',
@@ -62,7 +63,7 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
   },
 }));
 
-const StyledButton = styled(Button)(({ theme }) => ({
+const StyledButton = styled(Button)(() => ({
   marginTop: '20px',
   backgroundColor: '#FF69B4',
   color: '#FFF',
@@ -74,12 +75,11 @@ const StyledButton = styled(Button)(({ theme }) => ({
 const ProfilePage: React.FC = () => {
   const { user, setUser } = useContext(SessionContext) as SessionContextType;
 
-  const [newUserInfo, setNewUserInfo] = useState({
+  const [newUserInfo, setNewUserInfo] = useState<UserType>({
     name: '',
     email: '',
-    age: '',
     address: '',
-    phone: '',
+    phone: "",
     bio: '',
     job: '',
     company: ''
@@ -106,7 +106,7 @@ const ProfilePage: React.FC = () => {
   };
 
   return (
-    <StyledContainer component="main" maxWidth="sm">
+    <StyledContainer maxWidth="sm">
       <Paper elevation={3} sx={{ p: 4, width: '100%', textAlign: 'center', backgroundColor: '#FFF', color: '#000' }}>
         <Box sx={{ position: 'relative', display: 'inline-block' }}>
           <StyledAvatar>
@@ -139,7 +139,7 @@ const ProfilePage: React.FC = () => {
           <StyledTextField
             name="age"
             label="Age"
-            value={newUserInfo.age}
+            value={0}
             onChange={handleChange}
             fullWidth
             variant="outlined"

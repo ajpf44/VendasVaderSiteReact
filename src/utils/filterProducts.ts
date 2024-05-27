@@ -24,7 +24,7 @@ function filterProductsByPrice(
   const minFilter = Number(min) ?? 0;
 
   const filteredProducts = products.filter((p) => {
-    const prodPrice = Number(p.price.replace(",", "."));
+    const prodPrice = Number(p.price);
     const maxFilter = max == "" ? prodPrice + 1 : Number(max);
 
     // console.log(

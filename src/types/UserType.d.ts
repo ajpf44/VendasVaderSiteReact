@@ -7,6 +7,10 @@ type UserType = {
     email: string;
     address?: string;
     cart?: CartItem[];
+    job?:string,
+    bio?:string,
+    phone?: string,
+    company?: string
 }
 
 export default UserType;

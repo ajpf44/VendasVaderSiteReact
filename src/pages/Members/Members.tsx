@@ -1,4 +1,3 @@
-import React from 'react';
 import './Members.css';
 import { MembersData } from '../../Data/dataMembers';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -8,7 +7,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { Card } from '@mui/material';
 
 const MembersPage = () => {
-  const handleButtonClick = (url) => {
+  const handleButtonClick = (url: string) => {
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 

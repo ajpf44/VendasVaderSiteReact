@@ -11,6 +11,7 @@ type UserType = {
     bio?:string,
     phone?: string,
     company?: string
+    age?: string
 }
 
 export default UserType;

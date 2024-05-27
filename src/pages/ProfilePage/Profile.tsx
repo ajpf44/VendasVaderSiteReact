@@ -79,10 +79,11 @@ const ProfilePage: React.FC = () => {
     name: '',
     email: '',
     address: '',
-    phone: "",
+    phone: '',
     bio: '',
     job: '',
-    company: ''
+    company: '',
+    age: ''
   });
 
   useEffect(() => {
@@ -139,7 +140,7 @@ const ProfilePage: React.FC = () => {
           <StyledTextField
             name="age"
             label="Age"
-            value={0}
+            value={newUserInfo.age}
             onChange={handleChange}
             fullWidth
             variant="outlined"

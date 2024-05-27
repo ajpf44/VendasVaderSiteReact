@@ -46,12 +46,12 @@ Siga os passos abaixo para clonar e executar o projeto localmente.
 
 1. **Clone o repositório:**
    ```bash
-   git clone URL_DO_REPOSITORIO
+   git clone https://github.com/ajpf44/VendasVaderSiteReact/
    ```
 
 2. **Navegue até o diretório do projeto:**
    ```bash
-   cd nome-do-repositorio
+   cd VendasVaderSiteReact
    ```
 
 3. **Instale as dependências:**

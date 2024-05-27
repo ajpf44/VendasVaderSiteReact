@@ -25,8 +25,10 @@ const ProductCardMUI: React.FC<ProductCardProps> = ({
   const { addToCart } = useCart();
 
   const handleAddToCart = () => {
-    const itemToAdd = { ...prod, price: Number(prod.price), quantity };
-    addToCart(itemToAdd);
+    if (quantity > 0) { // Verifica se a quantidade é maior que 0
+      const itemToAdd = { ...prod, price: Number(prod.price), quantity };
+      addToCart(itemToAdd);
+    }
   };
 
   return (
@@ -58,7 +60,12 @@ const ProductCardMUI: React.FC<ProductCardProps> = ({
           <Typography variant="body1">{quantity}</Typography>
           <Button variant="outlined" onClick={onIncreaseQuantity}>+</Button>
         </div>
-        <Button variant="contained" color="primary" onClick={handleAddToCart}>
+        <Button 
+        variant="contained" 
+        color="primary" 
+        onClick={handleAddToCart}
+        // disabled={quantity === 0} // Desabilita o botão se a quantidade for 0
+        >
           Adicionar ao carrinho
         </Button>
       </CardContent>

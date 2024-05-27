@@ -7,13 +7,15 @@ interface ProductListProps {
   quantities: { [key: number]: number };
   onIncreaseQuantity: (productId: number) => void;
   onDecreaseQuantity: (productId: number) => void;
+  onAddToCart: (product: ProductType) => void;
 }
 
 const ProductList: React.FC<ProductListProps> = ({
   products,
   quantities,
   onIncreaseQuantity,
-  onDecreaseQuantity
+  onDecreaseQuantity,
+  onAddToCart
 }) => {
   return (
     <div className="listContainer">
@@ -24,6 +26,7 @@ const ProductList: React.FC<ProductListProps> = ({
             quantity={quantities[product.id] || 0}
             onIncreaseQuantity={() => onIncreaseQuantity(product.id)}
             onDecreaseQuantity={() => onDecreaseQuantity(product.id)}
+            onAddToCart={() => onAddToCart(product)}
           />
         </div>
       ))}

@@ -12,6 +12,7 @@ import {
 import SearchInput from "../../components/SearchInput";
 import { Box, Container } from "@mui/material";
 import LoadingIndicator from "../../components/LoadingIndicator";
+import { useCartContext } from "../../contexts/CartContext";
 
 const fetchNewProducts = async () => {
   const newProducts = await getAllProducts();
@@ -24,6 +25,8 @@ const Products: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [productsToShow, setProductsToShow] = useState<ProductType[]>([]);
   const [quantities, setQuantities] = useState<{ [key: number]: number }>({});
+
+  const { addToCart } = useCartContext(); 
 
   //UseStates Usados para o filtro
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -110,6 +113,15 @@ const Products: React.FC = () => {
     }));
   };
 
+  const handleAddToCart = (product: ProductType) => {
+    const quantity = quantities[product.id] || 0;
+    if (quantity > 0) {
+      addToCart({ ...product, quantity });
+    } else {
+      alert("Please select a quantity greater than zero");
+    }
+  };
+
   if (loading) {
     return <LoadingIndicator size={100} />;
   }
@@ -160,6 +172,7 @@ const Products: React.FC = () => {
               quantities={quantities}
               onIncreaseQuantity={handleIncreaseQuantity}
               onDecreaseQuantity={handleDecreaseQuantity}
+              onAddToCart={handleAddToCart}
             />
           </Box>
         </div>

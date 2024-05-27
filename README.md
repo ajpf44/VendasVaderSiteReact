@@ -1,6 +1,8 @@
-# Vendas Vader
+# [Vendas Vader](https://vendas-vader.web.app/home)
 
-Este é o Projeto final da disciplina de React Web do Serratec em parceria com o Senac, instruído pelo Professor João Felipe. Desenvolvido ao longo de 9 dias, nosso objetivo era construir um E-commerce com uma interface agradável, integração com uma API e sistema de autenticação, utilizando React com TypeScript. O código pode ser encontrado no [Repositório do Github](URL_DO_REPOSITORIO).
+O site está hospedado no próprio firebase:  [Link para o site](https://vendas-vader.web.app/home)
+
+Este é o Projeto final da disciplina de React Web do Serratec em parceria com o Senac, instruído pelo Professor João Felipe. Desenvolvido ao longo de 9 dias, nosso objetivo era construir um E-commerce com uma interface agradável, integração com uma API e sistema de autenticação, utilizando React com TypeScript. O código pode ser encontrado no [Repositório do Github](https://github.com/ajpf44/VendasVaderSiteReact/).
 
 ## Tecnologias Utilizadas
 
@@ -21,12 +23,13 @@ Este é o Projeto final da disciplina de React Web do Serratec em parceria com o
 
 ## Equipe
 
-- **Alexandre Jose Ponciano Ferreira**
-- **Arthur Baltar da Rocha**
-- **Matheus de Freitas Mello**
-- **Raphael Sousa Esch**
-- **Rodrigo da Silva Costa**
-- **Rômulo Henrique Ferreira Gonçalves**
+- **[Alexandre Jose Ponciano Ferreira](https://github.com/ajpf44)**
+- **[Arthur Baltar da Rocha](https://github.com/Arthurbaltar1)**
+- **[Matheus de Freitas Mello](https://github.com/MatheusMelloDev)**
+- **[Raphael Sousa Esch](https://github.com/GitGitFaFa)**
+- **[Rodrigo da Silva Costa](https://github.com/rodrigodevcosta)**
+- **[Rômulo Henrique Ferreira Gonçalves](https://github.com/Romulo-HFG)**
+
 
 Instrutor: **João Felipe**
 

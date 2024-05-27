@@ -1,30 +1,68 @@
-# React + TypeScript + Vite
+# Vendas Vader
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este é o Projeto final da disciplina de React Web do Serratec em parceria com o Senac, instruído pelo Professor João Felipe. Desenvolvido ao longo de 9 dias, nosso objetivo era construir um E-commerce com uma interface agradável, integração com uma API e sistema de autenticação, utilizando React com TypeScript. O código pode ser encontrado no [Repositório do Github](URL_DO_REPOSITORIO).
 
-Currently, two official plugins are available:
+## Tecnologias Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **TypeScript**
+- **Firebase**
+- **React**
+- **Vite**
+- **Axios**
+- **MUI (Material-UI)**
+- **Framer Motion**
 
-## Expanding the ESLint configuration
+## Versões
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Node.js:** v20.13.1
+- **React:** v18.3.1
+- **Vite:** v5.2.11
+- **MUI:** v5.15.18
 
-- Configure the top-level `parserOptions` property like this:
+## Equipe
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- **Alexandre Jose Ponciano Ferreira**
+- **Arthur Baltar da Rocha**
+- **Matheus de Freitas Mello**
+- **Raphael Sousa Esch**
+- **Rodrigo da Silva Costa**
+- **Rômulo Henrique Ferreira Gonçalves**
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Instrutor: **João Felipe**
+
+## Como Clonar e Executar o Projeto
+
+Siga os passos abaixo para clonar e executar o projeto localmente.
+
+### Pré-requisitos
+
+- Node.js instalado na versão v20.13.1 (ou superior)
+- npm (Node Package Manager) ou yarn instalado
+
+### Passo a Passo
+
+1. **Clone o repositório:**
+   ```bash
+   git clone URL_DO_REPOSITORIO
+   ```
+
+2. **Navegue até o diretório do projeto:**
+   ```bash
+   cd nome-do-repositorio
+   ```
+
+3. **Instale as dependências:**
+   ```bash
+   npm install
+   ```
+
+4. **Inicie o servidor de desenvolvimento:**
+   ```bash
+   npm run dev
+   ```
+
+5. **Acesse a aplicação:**
+   Abra o navegador e acesse `http://localhost:[PORT]`.
+   A PORT é mostrada no retorno do comando 4
+
+Pronto! Agora você deve ser capaz de visualizar e interagir com o site Vendas Vader localmente em sua máquina.

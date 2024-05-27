@@ -5,7 +5,7 @@ type UserType = {
     id?: string;
     name: string;
     email: string;
-    adress?: string;
+    address?: string;
     cart?: CartItem[];
 }
 

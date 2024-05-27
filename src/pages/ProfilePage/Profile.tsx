@@ -9,7 +9,7 @@ const StyledContainer = styled(Container)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  backgroundColor: '#FFF',
+  backgroundColor: 'rgba(0,0,0,0)',
   color: '#000',
   minHeight: '100vh',
   padding: '20px',

@@ -17,6 +17,7 @@ import {
   SessionContextType,
 } from "../../../contexts/SessionContext";
 import CircularProgress from "@mui/material/CircularProgress";
+import { Card } from "@mui/material";
 
 function Copyright(props: any) {
   return (
@@ -72,12 +73,14 @@ export default function MuiSignUp() {
   return (
     <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
-        <Box
+        <Card
           sx={{
+            padding: "2rem",
             marginTop: 8,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            borderRadius: "0.7rem"
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
@@ -187,7 +190,7 @@ export default function MuiSignUp() {
               </Grid>
             </Grid>
           </Box>
-        </Box>
+        </Card>
         <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>

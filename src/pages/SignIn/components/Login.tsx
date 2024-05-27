@@ -13,6 +13,10 @@ import Container from "@mui/material/Container";
 import { SessionContext, SessionContextType } from "../../../contexts/SessionContext";
 import { useNavigate } from 'react-router-dom'
 import CircularProgress from '@mui/material/CircularProgress';
+import { Card, ThemeProvider, createTheme } from "@mui/material";
+
+const defaultTheme = createTheme();
+
 
 function Copyright(props: any) {
   return (
@@ -61,14 +65,16 @@ export default function Login() {
   };
 
   return (
-
+  <ThemeProvider theme={defaultTheme}>
       <Container component="main" maxWidth="xs">
-        <Box
+        <Card
           sx={{
+            padding: "2rem",
             marginTop: 8,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            borderRadius: "0.7rem"
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
@@ -135,22 +141,22 @@ export default function Login() {
                 />
               )}
             </Box>
-            <Grid container>
+            <Grid container columns={2} direction={"column"}>
               <Grid item xs>
                 <Link href="#" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
-              <Grid item>
+              <Grid item >
                 <Link href="#" variant="body2" onClick={() => navigate('/SignUp')}>
                   {"Não tem uma conta? Cadastre-se"}
                 </Link>
               </Grid>
             </Grid>
           </Box>
-        </Box>
         <Copyright sx={{ mt: 8, mb: 4 }} />
+        </Card>
       </Container>
-    
+      </ThemeProvider>
   );
 }

@@ -15,7 +15,7 @@ const ProductList: React.FC<ProductListProps> = ({
   quantities,
   onIncreaseQuantity,
   onDecreaseQuantity,
-  onAddToCart
+  // onAddToCart
 }) => {
   return (
     <div className="listContainer">
@@ -26,7 +26,7 @@ const ProductList: React.FC<ProductListProps> = ({
             quantity={quantities[product.id] || 0}
             onIncreaseQuantity={() => onIncreaseQuantity(product.id)}
             onDecreaseQuantity={() => onDecreaseQuantity(product.id)}
-            onAddToCart={() => onAddToCart(product)}
+            // onAddToCart={() => onAddToCart(product)}
           />
         </div>
       ))}

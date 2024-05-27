@@ -13,21 +13,25 @@ interface ProductCardProps {
   quantity: number;
   onIncreaseQuantity: () => void;
   onDecreaseQuantity: () => void;
+  // onAddToCart: () => void;
 }
 
 const ProductCardMUI: React.FC<ProductCardProps> = ({
   prod,
   quantity,
   onIncreaseQuantity,
-  onDecreaseQuantity
+  onDecreaseQuantity,
+  // onAddToCart,
 }) => {
   const navigate = useNavigate();
   const { addToCart } = useCart();
 
   const handleAddToCart = () => {
-    if (quantity > 0) { // Verifica se a quantidade é maior que 0
+    if (quantity > 0) { // Verificar se a quantidade é maior que zero
       const itemToAdd = { ...prod, price: Number(prod.price), quantity };
       addToCart(itemToAdd);
+    } else {
+      alert("A quantidade deve ser maior que zero");
     }
   };
 

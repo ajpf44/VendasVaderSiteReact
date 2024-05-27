@@ -37,10 +37,10 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({
       const existingItem = prevItems.find((i) => i.id === item.id);
       if (existingItem) {
         return prevItems.map((i) =>
-          i.id === item.id ? { ...i, quantity: i.quantity + item.quantity } : i
+        i.id === item.id ? { ...i, quantity: item.quantity } : i
         );
       } else {
-        return [...prevItems, { ...item, quantity: 1 }]; //Adicionando quantidade inicial de um produto
+        return [...prevItems, item]; //Adicionando o item com a quantidade correta
       }
     });
   };

@@ -34,8 +34,8 @@ async function getAllUsers(): Promise<UserType[]> {
 
 async function getUserByEmail(email: string) {
   const arrUsers: Array<UserType> = await getAllUsers();
-
   const user = arrUsers.find((user) => user.email == email);
+  console.log("found user: ", user);
 
   return user;
 }

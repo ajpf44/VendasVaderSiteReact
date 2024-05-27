@@ -76,6 +76,7 @@ const SessionContextProvider: FC<SessionContextProviderProps> = ({
     name: string
   ): Promise<string | undefined> => {
     const userToken = await createUser(email, password);
+    
     if (userToken) {
       setToken(userToken);
 
@@ -86,8 +87,9 @@ const SessionContextProvider: FC<SessionContextProviderProps> = ({
         cart: undefined,
       };
 
-      createUserAtFirebase(newUser);
-      setUser(newUser);
+      await createUserAtFirebase(newUser);
+      const firebaseUser = await getUserByEmail(email);
+      setUser(firebaseUser);
 
       const sessionInfoJSON = JSON.stringify({
         user: newUser,

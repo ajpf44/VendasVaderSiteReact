@@ -1,6 +1,6 @@
 # [Vendas Vader](https://vendas-vader.web.app/home)
 
-O site está hospedado no próprio firebase:  [Link para o site](https://vendas-vader.web.app/home)
+O site está hospedado no firebase:  [Link para o site](https://vendas-vader.web.app/home)
 
 Este é o [Projeto final](https://github.com/brjoaof/senac-2024-01-react/tree/master/trabalho-final) da disciplina de React Web do [Serratec](https://serratec.org/) em parceria com o Senac, instruído pelo Professor João Felipe. Desenvolvido ao longo de 9 dias, nosso objetivo era construir um E-commerce com uma interface agradável, integração com uma API e sistema de autenticação, utilizando React com TypeScript. O código pode ser encontrado no [Repositório do Github](https://github.com/ajpf44/VendasVaderSiteReact/).
 
